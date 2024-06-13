@@ -1,11 +1,11 @@
 ---
-title: "Template Revealjs Quarto site"
+title: "No Data, No Worries : Fabricatr"
 # format: revealjs
 author:
-  - name: Your Name
-    orcid: 0000-0000-0000-0000
-    email: email@address.work
-    affiliations: Employers Name
+  - name: Neil Shephard
+    orcid: 0000-0001-8301-6857
+    email: n.shephard@sheffield.ac.uk
+    affiliations: Research Software Engineer, Department of Computer Science, University of Sheffield
 from: markdown+emoji
 format:
   clean-revealjs:
@@ -19,7 +19,7 @@ format:
     header: Quarto RevealJS Template
 revealjs-plugins:
   - confetti
-footer: "**Slides** : [**github-username.github.io/<repository>**](https://github-username.github.io/<repository>)"
+footer: "**Slides** : [**ns-rse.github.io/sheffieldr-fabricatr-20240621**](https://ns-rse.github.io/sheffieldr-fabricatr-20240621)"
 project:
   preview:
     port: 7864
@@ -32,196 +32,135 @@ filters:
 
 ## Scan This
 
-{{< qrcode <https://ns-rse.github.io/quarto-revealjs-template> qr1 width=400 height=400 >}}
+{{< qrcode <https://ns-rse.github.io/sheffieldr-fabricatr-20240621> qr1 width=400 height=400 >}}
 
-[ns-rse.github.io/quarto-revealjs-template](https://ns-rse.github.io/quarto-revealjs-template)
+[ns-rse.github.io/sheffieldr-fabricatr-20240621](https://ns-rse.github.io/sheffieldr-fabricatr-20240621)
 
-## Quarto RevealJS Slides
+## Motivation
 
-This is a [Quarto](https://quarto.org/) template for creating [RevealJS](https://revealjs.com/) slides.
+:::: {.columns}
 
-The template can be used as a starting point for your own slides and includes a number of different layouts and examples
-of Markdown syntax, slide layout, links, embedding images and configuration options.
+::: {.column width="30%"}
 
-## Formatting
++ Rarely work on my own data.
++ Literate, reproducible workflow
+  + [Org-Babel][org-babel]
+  + [RMarkdown][rmarkdown]
+  + [Quarto][quarto].
++ Scripts to clean, summarise, plot and analyse data.
 
-Quarto slides are written in [Markdown](https://quarto.org/docs/authoring/markdown-basics.html).
+:::
 
-| Markdown Syntax                              | Output                                |
-|:---------------------------------------------|:--------------------------------------|
-| `*italics*`, `**bold**`, `***bolditalics***` | *italics*, **bold**, **bold italics** |
-| `superscript^1^`, `subscript~2~`             | superscript^1^, subscript~2~          |
-| `~~strikethrough~~`                          | ~~strikethrough~~                     |
-| ```code```                                   | `code`                                |
-| `[Quarto](https://quarto.org)`               | [Quarto](https://quarto.org)          |
+::: {.column width="70%"}
+
+![The Turing Way project illustration by Scriberia. Used under a CC-BY 4.0 licence. DOI:
+[10.5281/zenodo.3332807](https://doi.org/10.5281/zenodo.3332807)](https://the-turing-way.netlify.app/_images/reproducibility.jpg)
+:::
+::::
+
+::: {.notes}
+Speaker Notes can be added to each slide. **Formatting** can be used here too.
+::
+:
+## Problem
+
+:::: {.columns}
+
+::: {.column width="30%"}
+
++ Rarely is full data set available!
+
+:::
+
+::: {.column width="70%"}
+
+![The Turing Way project illustration by Scriberia. Used under a CC-BY 4.0 licence. DOI: [10.5281/zenodo.3332807](https://doi.org/10.5281/zenodo.3332807)](https://the-turing-way.netlify.app/_images/research-cycle.svg)
+
+:::
+::::
 
 ::: {.notes}
 Speaker Notes can be added to each slide. **Formatting** can be used here too.
 :::
 
-## Columns and Lists
+## Solution
 
-Slides can have columns and you can create [lists](https://quarto.org/docs/authoring/markdown-basics.html#lists) of
-different types.
++ Database schema/dictionary?
+
+. . .
+
++ Simulate data!
+
+## Fabricatr
+
++ [fabricatr](https://declaredesign.org/r/fabricatr/) - _Imagine Your Data Before You Collect It_
 
 :::: {.columns}
 
 ::: {.column width="50%"}
-**ToDo** (code)
 
-```markdown
-+ Learn Markdown
-+ Create Quarto Slides
-+ Publish on GitHub
+```r
+install.packages("fabricatr")
+library(fabricatr)
+library(visdat)
+library(nanair)
+
+set.seed(55138)
 ```
 
 :::
 
 ::: {.column width="50%"}
-**ToDo** (Rendered)
 
-+ Learn Markdown
-+ Create Quarto Slides
-+ Publish on GitHub
-
++ Binary variables
++ Categorical/factors
++ Continuous
++ Time-Series
++ Correlated
++ Intra-Class Correlation (ICC)
 :::
 ::::
 
 ::: {.notes}
-Slides can have columns and we can create unordered lists.
+Speaker Notes can be added to each slide. **Formatting** can be used here too.
 :::
 
-## Columns and Lists (cont.)
-
-:::: {.columns}
-
-::: {.column width="50%"}
-**Ordered** (code)
-
-```markdown
-1. A comes before
-2. B which is followed by
-3. C
-```
-
-:::
-
-::: {.column width="50%"}
-**Ordered** (Rendered)
-
-1. A comes before
-2. B which is followed by
-3. C
-
-:::
-::::
-
-::: {.notes}
-Or ordered lists.
-:::
-
-## Tables
-
-You can manually add [tables](https://quarto.org/docs/authoring/markdown-basics.html#tables).
+## Basic Example
 
 :::: {.columns}
 
 ::: {.column width="50%"}
 
-```markdown
-| Right | Left | Default | Center |
-|------:|:-----|---------|:------:|
-|   12  |  12  |    12   |    12  |
-|  123  |  123 |   123   |   123  |
-|    1  |    1 |     1   |     1  |
-```
++ 100 observations.
++ Binary : [`draw_binary()`](https://declaredesign.org/r/fabricatr/reference/draw_discrete.html).
++ Binomial :
+  [`draw_binomial()`](https://declaredesign.org/r/fabricatr/reference/draw_discrete.html).
++ Continuous (0-1) : [`runif()`](https://rdrr.io/r/stats/Uniform.html).
++ Random Normal (mean = 38, sd = 16) : [`rnorm()`](https://rdrr.io/r/stats/Normal.html).
 
 :::
 ::: {.column width="50%"}
-
-| Right | Left | Default | Center |
-|------:|:-----|---------|:------:|
-|   12  |  12  |    12   |    12  |
-|  123  |  123 |   123   |   123  |
-|    1  |    1 |     1   |     1  |
-
-:::
-::::
-
-::: {.notes}
-Tables can be added, but there is a better way to include these programatically
-:::
-
-## Equations
-
-| Markdown Syntax                    | Output                       |
-|:----------------------------------:|:-----------------------------|
-| `inline math $E = mc^{2}$`         | inline math $E = mc^{2}$     |
-| ```display math: $$E = mc^{2}$$``` | display math: $$E = mc^{2}$$ |
-
-::: {.notes}
-You can write equations if you need to.
-:::
-
-## Embed Images
-
-[Figures](https://quarto.org/docs/authoring/figures.html) can be embeded using a URL and resized.
-
-```markdown
-![Relaxing in the Julian Alps](https://live.staticflickr.com/65535/53144704609_c5e6fa8c77_k.jpg){width=700}
-```
-
-![Relaxing in the Julian Alps](https://live.staticflickr.com/65535/53144704609_c5e6fa8c77_k.jpg){width=700}
-
-::: {.notes}
-:::
-
-## Embed Images (*cont.*)
-
-You can also include images locally.^[Make sure to `git add` them otherwise they won't publish] and make them hyperlinks.
-
-```markdown
-![[OSC Sheffield](https://osc-international.com/osc-sheffield)](img/OSC_Sheffield.png){width=300}
-```
-
-![[OSC Sheffield](https://osc-international.com/osc-sheffield)](img/OSC_Sheffield.png){width=300}
-
-::: {.notes}
-:::
-
-## R code
-
-:::: {.columns}
-
-::: {.column width="50%"}
-Include [R code and output](https://quarto.org/docs/computations/r.html) with automatic referencing (see @fig-airquality2)
 
 ```{r}
-#| label: fig-airquality
-#| fig-cap: "Temperature and ozone level."
+#| label: fabricatr-basic
 #| warning: false
-#| eval: false
+#| eval: true
 #| echo: true
-library(ggplot2)
+dummy_df <- fabricatr::fabricate(
+    N = 100,
+    binary = fabricatr::draw_binary(
+        N,
+        prob = runif(N)
+        ),
+    binomial = fabricatr::draw_binomial(
+        prob = runif(N),
+        trials = 2
+        ),
+    uniform = runif(N),
+    random_normal = rnorm(N, 38, 16)
+)
+dummy_df |> head()
 
-ggplot(airquality, aes(Temp, Ozone)) +
-  geom_point() +
-  geom_smooth(method = "loess")
-```
-
-:::
-::: {.column width="50%"}
-
-```{r}
-#| label: fig-airquality2
-#| fig-cap: "Temperature and ozone level."
-#| warning: false
-
-library(ggplot2)
-
-ggplot(airquality, aes(Temp, Ozone)) +
-  geom_point() +
-  geom_smooth(method = "loess")
 ```
 
 :::
@@ -232,107 +171,201 @@ ggplot(airquality, aes(Temp, Ozone)) +
 [R](https://www.r-project.org/) code can be embeded and executed to produce tables and figures.
 :::
 
-## Python code
+## Basic Example - Summary
 
-::: {.column width="50%"}
-Include [Python code and output](https://quarto.org/docs/computations/python.html) too
-
-```{.python}
-#| label: fig-polar
-#| fig-cap: "A line plot on a polar axis."
-#| warning: false
-#| eval: false
-#| echo: true
-import numpy as np
-import matplotlib.pyplot as plt
-
-r = np.arange(0, 2, 0.01)
-theta = 2 * np.pi * r
-fig, ax = plt.subplots(
-  subplot_kw = {'projection': 'polar'}
-)
-ax.plot(theta, r)
-ax.set_rticks([0.5, 1, 1.5, 2])
-ax.grid(True)
-plt.show()
-```
-
-:::
-::: {.column width="50%"}
-
-```{.python}
-#| label: fig-polar2
-#| fig-cap: "A line plot on a polar axis."
-#| warning: false
-#| eval: true
-#| echo: true
-import numpy as np
-import matplotlib.pyplot as plt
-
-r = np.arange(0, 2, 0.01)
-theta = 2 * np.pi * r
-fig, ax = plt.subplots(
-  subplot_kw = {'projection': 'polar'}
-)
-ax.plot(theta, r)
-ax.set_rticks([0.5, 1, 1.5, 2])
-ax.grid(True)
-plt.show()
-```
-
-:::
-::::
-
-::: {.notes}
-You can include [Python](https://www.python.org) code too
-:::
-
-## General code
-
-There are lots of options for showing, hiding, highlighting [code
-blocks](https://quarto.org/docs/presentations/revealjs/#code-blocks).
-
-```{.python code-line-numbers="6-8"}
-#| eval: true
-#| echo: true
-import numpy as np
-import matplotlib.pyplot as plt
-
-r = np.arange(0, 2, 0.01)
-theta = 2 * np.pi * r
-fig, ax = plt.subplots(subplot_kw={'projection': 'polar'})
-ax.plot(theta, r)
-ax.set_rticks([0.5, 1, 1.5, 2])
-ax.grid(True)
-plt.show()
-```
-
-## The Documentation is Good
-
-The official documentation is really good.
-
-+ [Get Started](https://quarto.org/docs/get-started/)
-+ [Markdown Basics](https://quarto.org/docs/authoring/markdown-basics.html)
-+ [Guide](https://quarto.org/docs/guide/) with many sections on [Presentations](https://quarto.org/docs/presentations/)
-  [Website](https://quarto.org/docs/websites/), [Books](https://quarto.org/docs/books/) and more.
-
-## Extensions
 
 :::: {.columns}
 
-::: {.column width="70%"}
-[Extensions](https://quarto.org/docs/extensions/) for themes and other functionality
-(press `c` whilst viewing these slides :wink: ).
+::: {.column width="50%"}
 
-+ [Shortcode/Filter](https://quarto.org/docs/extensions/listing-filters.html)
-+ [Journal Articles](https://quarto.org/docs/extensions/listing-journals.html)
-+ [Custom Formats](https://quarto.org/docs/extensions/listing-formats.html)
-+ [**RevealJS**](https://quarto.org/docs/extensions/listing-revealjs.html)
-+ [awesome-quarto](https://github.com/mcanouil/awesome-quarto) - Quarto tools & examples
+```{r}
+#| label: fabricatr-basic-summary
+#| warning: false
+#| eval: true
+#| echo: true
+library(gtsummary)
+
+gtsummary::tbl_summary(
+    dummy_df,
+    include = c(binary,
+                binomial,
+                uniform,
+                random_normal))
+
+```
 
 :::
-::: {.column width=30%}
-This Template...
-{{< qrcode <https://ns-rse.github.io/quarto-revealjs-template> qr2 width=400 height=400 >}}
+::: {.column width="50%"}
+
+```{r}
+#| label: fig-fabricatr-basic-histogram
+#| fig-cap: Random Normal variable.
+#| warning: false
+#| eval: true
+#| echo: false
+library(ggplot2)
+
+ggplot(dummy_df, aes(random_normal)) +
+   geom_histogram()
+
+ggplot(dummy_df, aes(binary)) +
+   geom_bar() +
+   ggtitle("Random Normal Variable")
+```
+
+```{r}
+#| label: fig-fabricatr-basic-bar
+#| fig-cap: Binary variable.
+#| warning: false
+#| eval: true
+#| echo: false
+
+ggplot(dummy_df, aes(binary, fill = binary)) +
+   geom_bar() +
+   ggtitle("Binary Variable")
+```
+
+
 :::
+
 ::::
+
+
+## Categorical Variables
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
++ 100 observations
++ Generate random normal using [`rnorm()`]()
++ Categorise using [`draw_ordered()`]() and setting `breaks`.
++ Label variables with `break_labels`
+:::
+::: {.column width="50%"}
+
+```{r}
+#| label: fabricatr-categorical
+#| warning: false
+#| eval: true
+#| echo: true
+cat_df <- fabricatr::fabricate(
+    N = 100,
+    x = rnorm(N),
+    ordered = fabricatr::draw_ordered(
+        x,
+        breaks = c(-Inf,
+                   -1,
+                   -0.5,
+                   0,
+                   0.5,
+                   1,
+                   Inf),
+        break_labels = c("Group 1",
+                         "Group 2",
+                         "Group 3",
+                         "Group 4",
+                         "Group 5",
+                         "Group 6")
+    )
+)
+```
+
+:::
+
+::::
+
+::: {.notes}
+[R](https://www.r-project.org/) code can be embeded and executed to produce tables and figures.
+:::
+
+## Categorical Variables - Summary
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| label: fabricatr-categorical-summary
+#| fig-cap: Categorical variable with six levels.
+#| warning: false
+#| eval: true
+#| echo: true
+gtsummary::tbl_summary(
+    cat_df,
+    include = c(ordered)
+)
+
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| label: fig-fabricatr-categorical-bar
+#| warning: false
+#| eval: true
+#| echo: false
+ggplot(cat_df, aes(ordered, fill=ordered)) +
+    geom_bar()
+
+```
+
+:::
+
+::::
+
+::: {.notes}
+[R](https://www.r-project.org/) code can be embeded and executed to produce tables and figures.
+:::
+
+
+## Correlated Variables
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+corr_df <- fabricatr::fabricate(
+    N = 100,
+    x = rnorm(N),
+    ordered = fabricatr::draw_ordered(
+        x,
+        breaks = c(-Inf,
+                   -1,
+                   -0.5,
+                   0,
+                   0.5,
+                   1,
+                   Inf),
+        break_labels = c("Group 1",
+                         "Group 2",
+                         "Group 3",
+                         "Group 4",
+                         "Group 5",
+                         "Group 6")
+    )
+)
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+
+```
+
+:::
+
+::::
+
+::: {.notes}
+[R](https://www.r-project.org/) code can be embeded and executed to produce tables and figures.
+:::
+
+[org-babel]: https://orgmode.org/worg/org-contrib/babel/
+[rmarkdown]: https://bookdown.org/yihui/rmarkdown/
+[quarto]: https://quarto.org
