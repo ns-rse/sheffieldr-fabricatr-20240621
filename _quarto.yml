@@ -1,0 +1,7 @@
+project:
+  type: website
+
+website:
+  title: "No Data, No Worries : Fabricatr"
+  site-url: https://ns-rse.github.io/sheffieldr-fabricatr-20240621
+  description: "Slides for a lightning talk on using the Fabricatr package to generate simulated data."

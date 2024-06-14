@@ -1,0 +1,371 @@
+---
+title: "No Data, No Worries : Fabricatr"
+# format: revealjs
+author:
+  - name: Neil Shephard
+    orcid: 0000-0001-8301-6857
+    email: n.shephard@sheffield.ac.uk
+    affiliations: Research Software Engineer, Department of Computer Science, University of Sheffield
+from: markdown+emoji
+format:
+  clean-revealjs:
+    incremental: false
+    slide-number: true
+    show-slide-number: speaker
+    auto-stretch: false
+    chalkboard: true
+    # embed-resources: true
+    # standalone: true
+    header: Quarto RevealJS Template
+revealjs-plugins:
+  - confetti
+footer: "**Slides** : [**ns-rse.github.io/sheffieldr-fabricatr-20240621**](https://ns-rse.github.io/sheffieldr-fabricatr-20240621)"
+project:
+  preview:
+    port: 7864
+    host: localhost
+    watch-inputs: true
+filters:
+  - openlinksinnewpage
+  - reveal-header
+---
+
+## Scan This
+
+{{< qrcode <https://ns-rse.github.io/sheffieldr-fabricatr-20240621> qr1 width=400 height=400 >}}
+
+[ns-rse.github.io/sheffieldr-fabricatr-20240621](https://ns-rse.github.io/sheffieldr-fabricatr-20240621)
+
+## Motivation
+
+:::: {.columns}
+
+::: {.column width="30%"}
+
++ Rarely work on my own data.
++ Literate, reproducible workflow
+  + [Org-Babel][org-babel]
+  + [RMarkdown][rmarkdown]
+  + [Quarto][quarto].
++ Scripts to clean, summarise, plot and analyse data.
+
+:::
+
+::: {.column width="70%"}
+
+![The Turing Way project illustration by Scriberia. Used under a CC-BY 4.0 licence. DOI:
+[10.5281/zenodo.3332807](https://doi.org/10.5281/zenodo.3332807)](https://the-turing-way.netlify.app/_images/reproducibility.jpg)
+:::
+::::
+
+::: {.notes}
+Speaker Notes can be added to each slide. **Formatting** can be used here too.
+::
+:
+## Problem
+
+:::: {.columns}
+
+::: {.column width="30%"}
+
++ Rarely is full data set available!
+
+:::
+
+::: {.column width="70%"}
+
+![The Turing Way project illustration by Scriberia. Used under a CC-BY 4.0 licence. DOI: [10.5281/zenodo.3332807](https://doi.org/10.5281/zenodo.3332807)](https://the-turing-way.netlify.app/_images/research-cycle.svg)
+
+:::
+::::
+
+::: {.notes}
+Speaker Notes can be added to each slide. **Formatting** can be used here too.
+:::
+
+## Solution
+
++ Database schema/dictionary?
+
+. . .
+
++ Simulate data!
+
+## Fabricatr
+
++ [fabricatr](https://declaredesign.org/r/fabricatr/) - _Imagine Your Data Before You Collect It_
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```r
+install.packages("fabricatr")
+library(fabricatr)
+library(visdat)
+library(nanair)
+
+set.seed(55138)
+```
+
+:::
+
+::: {.column width="50%"}
+
++ Binary variables
++ Categorical/factors
++ Continuous
++ Time-Series
++ Correlated
++ Intra-Class Correlation (ICC)
+:::
+::::
+
+::: {.notes}
+Speaker Notes can be added to each slide. **Formatting** can be used here too.
+:::
+
+## Basic Example
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
++ 100 observations.
++ Binary : [`draw_binary()`](https://declaredesign.org/r/fabricatr/reference/draw_discrete.html).
++ Binomial :
+  [`draw_binomial()`](https://declaredesign.org/r/fabricatr/reference/draw_discrete.html).
++ Continuous (0-1) : [`runif()`](https://rdrr.io/r/stats/Uniform.html).
++ Random Normal (mean = 38, sd = 16) : [`rnorm()`](https://rdrr.io/r/stats/Normal.html).
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| label: fabricatr-basic
+#| warning: false
+#| eval: true
+#| echo: true
+dummy_df <- fabricatr::fabricate(
+    N = 100,
+    binary = fabricatr::draw_binary(
+        N,
+        prob = runif(N)
+        ),
+    binomial = fabricatr::draw_binomial(
+        prob = runif(N),
+        trials = 2
+        ),
+    uniform = runif(N),
+    random_normal = rnorm(N, 38, 16)
+)
+dummy_df |> head()
+
+```
+
+:::
+
+::::
+
+::: {.notes}
+[R](https://www.r-project.org/) code can be embeded and executed to produce tables and figures.
+:::
+
+## Basic Example - Summary
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| label: fabricatr-basic-summary
+#| warning: false
+#| eval: true
+#| echo: true
+library(gtsummary)
+
+gtsummary::tbl_summary(
+    dummy_df,
+    include = c(binary,
+                binomial,
+                uniform,
+                random_normal))
+
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| label: fig-fabricatr-basic-histogram
+#| fig-cap: Random Normal variable.
+#| warning: false
+#| eval: true
+#| echo: false
+library(ggplot2)
+
+ggplot(dummy_df, aes(random_normal)) +
+   geom_histogram()
+
+ggplot(dummy_df, aes(binary)) +
+   geom_bar() +
+   ggtitle("Random Normal Variable")
+```
+
+```{r}
+#| label: fig-fabricatr-basic-bar
+#| fig-cap: Binary variable.
+#| warning: false
+#| eval: true
+#| echo: false
+
+ggplot(dummy_df, aes(binary, fill = binary)) +
+   geom_bar() +
+   ggtitle("Binary Variable")
+```
+
+
+:::
+
+::::
+
+
+## Categorical Variables
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
++ 100 observations
++ Generate random normal using [`rnorm()`]()
++ Categorise using [`draw_ordered()`]() and setting `breaks`.
++ Label variables with `break_labels`
+:::
+::: {.column width="50%"}
+
+```{r}
+#| label: fabricatr-categorical
+#| warning: false
+#| eval: true
+#| echo: true
+cat_df <- fabricatr::fabricate(
+    N = 100,
+    x = rnorm(N),
+    ordered = fabricatr::draw_ordered(
+        x,
+        breaks = c(-Inf,
+                   -1,
+                   -0.5,
+                   0,
+                   0.5,
+                   1,
+                   Inf),
+        break_labels = c("Group 1",
+                         "Group 2",
+                         "Group 3",
+                         "Group 4",
+                         "Group 5",
+                         "Group 6")
+    )
+)
+```
+
+:::
+
+::::
+
+::: {.notes}
+[R](https://www.r-project.org/) code can be embeded and executed to produce tables and figures.
+:::
+
+## Categorical Variables - Summary
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| label: fabricatr-categorical-summary
+#| fig-cap: Categorical variable with six levels.
+#| warning: false
+#| eval: true
+#| echo: true
+gtsummary::tbl_summary(
+    cat_df,
+    include = c(ordered)
+)
+
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| label: fig-fabricatr-categorical-bar
+#| warning: false
+#| eval: true
+#| echo: false
+ggplot(cat_df, aes(ordered, fill=ordered)) +
+    geom_bar()
+
+```
+
+:::
+
+::::
+
+::: {.notes}
+[R](https://www.r-project.org/) code can be embeded and executed to produce tables and figures.
+:::
+
+
+## Correlated Variables
+
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+corr_df <- fabricatr::fabricate(
+    N = 100,
+    x = rnorm(N),
+    ordered = fabricatr::draw_ordered(
+        x,
+        breaks = c(-Inf,
+                   -1,
+                   -0.5,
+                   0,
+                   0.5,
+                   1,
+                   Inf),
+        break_labels = c("Group 1",
+                         "Group 2",
+                         "Group 3",
+                         "Group 4",
+                         "Group 5",
+                         "Group 6")
+    )
+)
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+
+```
+
+:::
+
+::::
+
+::: {.notes}
+[R](https://www.r-project.org/) code can be embeded and executed to produce tables and figures.
+:::
+
+[org-babel]: https://orgmode.org/worg/org-contrib/babel/
+[rmarkdown]: https://bookdown.org/yihui/rmarkdown/
+[quarto]: https://quarto.org
