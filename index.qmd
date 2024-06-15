@@ -93,15 +93,18 @@ Speaker Notes can be added to each slide. **Formatting** can be used here too.
 
 ## Fabricatr
 
-+ [fabricatr](https://declaredesign.org/r/fabricatr/) - _Imagine Your Data Before You Collect It_
++ [fabricatr][fabricatr] - _Imagine Your Data Before You Collect It_
 
 :::: {.columns}
 
 ::: {.column width="50%"}
 
 ```r
-install.packages("fabricatr")
+install.packages(c("fabricatr", "tidyverse"))
+library(correlate)
+library(dplyr)
 library(fabricatr)
+library(tidyr)
 library(visdat)
 library(nanair)
 
@@ -132,11 +135,10 @@ Speaker Notes can be added to each slide. **Formatting** can be used here too.
 ::: {.column width="50%"}
 
 + 100 observations.
-+ Binary : [`draw_binary()`](https://declaredesign.org/r/fabricatr/reference/draw_discrete.html).
-+ Binomial :
-  [`draw_binomial()`](https://declaredesign.org/r/fabricatr/reference/draw_discrete.html).
-+ Continuous (0-1) : [`runif()`](https://rdrr.io/r/stats/Uniform.html).
-+ Random Normal (mean = 38, sd = 16) : [`rnorm()`](https://rdrr.io/r/stats/Normal.html).
++ Binary : [`draw_binary()`][draw-discrete].
++ Binomial : [`draw_binomial()`][draw-discrete].
++ Continuous (0-1) : [`runif()`][runif].
++ Random Normal (mean = 38, sd = 16) : [`rnorm()`][rnorm].
 
 :::
 ::: {.column width="50%"}
@@ -182,7 +184,7 @@ dummy_df |> head()
 #| label: fabricatr-basic-summary
 #| warning: false
 #| eval: true
-#| echo: true
+#| echo: false
 library(gtsummary)
 
 gtsummary::tbl_summary(
@@ -238,9 +240,10 @@ ggplot(dummy_df, aes(binary, fill = binary)) +
 ::: {.column width="50%"}
 
 + 100 observations
-+ Generate random normal using [`rnorm()`]()
-+ Categorise using [`draw_ordered()`]() and setting `breaks`.
++ Random Normal (mean = 0, sd = 1) : [`rnorm()`][rnorm]
++ Categorise using [`draw_ordered()`][draw-discrete] and setting `breaks`.
 + Label variables with `break_labels`
+
 :::
 ::: {.column width="50%"}
 
@@ -291,7 +294,7 @@ cat_df <- fabricatr::fabricate(
 #| fig-cap: Categorical variable with six levels.
 #| warning: false
 #| eval: true
-#| echo: true
+#| echo: false
 gtsummary::tbl_summary(
     cat_df,
     include = c(ordered)
@@ -317,44 +320,262 @@ ggplot(cat_df, aes(ordered, fill=ordered)) +
 ::::
 
 ::: {.notes}
+[R](https://www.r-project.org/** code can be embeded and executed to produce tables and figures.
+:::
+
+
+## Correlated Continuous Variables
+
+**EXPERIMENTAL**
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
++ 100 observations
++ Random Normal  `y` (mean = 38, sd = 16) :  using [`rnorm()`][rnorm]
++ Random normal `a` (mean = 78, sd = 14) : [`rnorm()`][rnorm] rank correlation with `y` of `0.8` using [`correlate`][correlate]
++ Random normal `b` (mean = 46, sd = 18) : [`rnorm()`][rnorm] rank correlation with `y` of `-0.4` using [`correlate`][correlate]
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| label: fabricatr-correlated-continuous
+#| warning: false
+#| eval: true
+#| echo: true
+corr_df <- fabricatr::fabricate(
+    N = 100,
+    y = rnorm(N, mean = 64, sd = 11),
+    a = fabricatr::correlate(given = y,
+                             rho = 0.8,
+                             rnorm,
+                             mean = 78,
+                             sd = 14),
+    b = fabricatr::correlate(given = y,
+                             rho = -0.4,
+                             rnorm,
+                             mean = 46,
+                             sd = 18)
+
+)
+```
+
+:::
+
+::::
+
+::: {.notes}
 [R](https://www.r-project.org/) code can be embeded and executed to produce tables and figures.
 :::
 
 
-## Correlated Variables
-
+## Correlated Continuous Variables - Summary
 
 :::: {.columns}
 
 ::: {.column width="50%"}
 
 ```{r}
-corr_df <- fabricatr::fabricate(
-    N = 100,
-    x = rnorm(N),
-    ordered = fabricatr::draw_ordered(
-        x,
-        breaks = c(-Inf,
-                   -1,
-                   -0.5,
-                   0,
-                   0.5,
-                   1,
-                   Inf),
-        break_labels = c("Group 1",
-                         "Group 2",
-                         "Group 3",
-                         "Group 4",
-                         "Group 5",
-                         "Group 6")
+#| label: fabricatr-correlated-continuous-summary
+#| warning: false
+#| eval: true
+#| echo: false
+gtsummary::tbl_summary(
+    corr_df,
+    include = c(y, a, b)
     )
-)
+
 ```
 
 :::
 ::: {.column width="50%"}
 
 ```{r}
+#| label: fabricatr-correlated-continuous-heatmap
+#| warning: false
+#| eval: true
+#| echo: false
+cov_tibble <- corr_df |>
+    dplyr::select(y, a, b) |>
+    corrr::correlate() |>
+    tidyr::pivot_longer(-term, names_to="var", values_to="correlation")
+unique_vars <- unique(cov_tibble$term)
+cov_tibble <- cov_tibble |>
+    dplyr::mutate(
+        term = factor(term, levels = unique_vars),
+        var = factor(var, levels = rev(unique_vars)))
+ggplot2::ggplot(cov_tibble, aes(term, var)) +
+  geom_tile(aes(fill = correlation)) +
+  geom_text(aes(label = round(correlation, 3))) +
+  labs(x = element_blank(),
+       y = element_blank(),
+       fill = "Correlation",
+       title = "Correlation in Simulated Data") +
+  scale_fill_gradient2(
+    high = "firebrick2",
+    mid = "white",
+    low = "dodgerblue4"
+  )
+```
+
+:::
+
+::::
+
+::: {.notes}
+[R](https://www.r-project.org/) code can be embeded and executed to produce tables and figures.
+:::
+
+## Correlated Discrete Variables
+
+**EXPERIMENTAL**
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
++ 100 observations
++ Binomial  `q1` (prob = 0.38, trials = 10) :  using [`draw_binomial()`][draw_discrete]
++ Binomial `q1` (prob = 0.63, trials = 5) : [`draw_binomial()`][draw_discrete] rank correlation with `q1` of `0.74`
+  using [`correlate`][correlate]
++ Binomial `q3` (prob = 0.79, trials = 5) : [`draw_binomial()`][draw_discrete] rank correlation with `q2` of `-0.89` using [`correlate`][correlate]
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| label: fabricatr-correlated-discrete
+#| warning: false
+#| eval: true
+#| echo: true
+corr_discrete_df <- fabricatr::fabricate(
+    N = 100,
+    q1 = fabricatr::draw_binomial(prob = 0.38, trials = 10, N = N),
+    q2 = fabricatr::correlate(given = q1,
+                             rho = 0.74,
+                             fabricatr::draw_binomial,
+                             prob = 0.63,
+                             trials = 10),
+    q3 = fabricatr::correlate(given = q2,
+                             rho = -0.89,
+                             fabricatr::draw_binomial,
+                             prob = 0.79,
+                             trials = 10)
+)
+```
+
+:::
+
+::::
+
+::: {.notes}
+[R](https://www.r-project.org/) code can be embeded and executed to produce tables and figures.
+:::
+
+
+## Correlated Discrete Variables - Summary {.scrollable}
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| label: fabricatr-correlated-discrete-summary
+#| warning: false
+#| eval: true
+#| echo: false
+gtsummary::tbl_summary(
+    corr_discrete_df,
+    include = c(q1, q2, q3)
+    )
+
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| label: fabricatr-correlated-discrete-heatmap
+#| warning: false
+#| eval: true
+#| echo: false
+cov_tibble <- corr_discrete_df |>
+    dplyr::select(q1, q2, q3) |>
+    corrr::correlate() |>
+    tidyr::pivot_longer(-term, names_to="var", values_to="correlation")
+unique_vars <- unique(cov_tibble$term)
+cov_tibble <- cov_tibble |>
+    dplyr::mutate(
+        term = factor(term, levels = unique_vars),
+        var = factor(var, levels = rev(unique_vars)))
+ggplot2::ggplot(cov_tibble, aes(term, var)) +
+  geom_tile(aes(fill = correlation)) +
+  geom_text(aes(label = round(correlation, 3))) +
+  labs(x = element_blank(),
+       y = element_blank(),
+       fill = "Correlation",
+       title = "Correlation in Simulated Data") +
+  scale_fill_gradient2(
+    high = "firebrick2",
+    mid = "white",
+    low = "dodgerblue4"
+  )
+```
+
+:::
+
+::::
+
+::: {.notes}
+[R](https://www.r-project.org/) code can be embeded and executed to produce tables and figures.
+:::
+
+## Intra Class Correlation (ICC)
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
++ Nested study design (e.g. schools, counties)
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| label: fabricatr-icc
+#| warning: false
+#| eval: true
+#| echo: true
+```
+
+:::
+
+::::
+
+## Intra Class Correlation (ICC) - Summary
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+```{r}
+#| label: fabricatr-icc-summary
+#| warning: false
+#| eval: true
+#| echo: false
+
+```
+
+:::
+::: {.column width="50%"}
+
+```{r}
+#| label: fabricatr-icc-heatmap
+#| warning: false
+#| eval: true
+#| echo: false
 
 ```
 
@@ -366,6 +587,20 @@ corr_df <- fabricatr::fabricate(
 [R](https://www.r-project.org/) code can be embeded and executed to produce tables and figures.
 :::
 
+## Summary
+
++ [fabricatr][fabricatr] powerful but _easy_ to use.
++ Simulate data and setup analytical workflow.
++ Not useful for _cleaning/tidying_ real data (~80% of work!).
++ Need good database schema/data dictionary
+
+
+
+[correlate]: https://declaredesign.org/r/fabricatr/reference/correlate.html
+[draw-discrete]: https://declaredesign.org/r/fabricatr/reference/draw_discrete.html
+[fabricatr]: https://declaredesign.org/r/fabricatr/
 [org-babel]: https://orgmode.org/worg/org-contrib/babel/
 [rmarkdown]: https://bookdown.org/yihui/rmarkdown/
 [quarto]: https://quarto.org
+[rnorm]: https://rdrr.io/r/stats/Normal.html
+[runif]: https://rdrr.io/r/stats/Uniform.html
