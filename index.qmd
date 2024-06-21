@@ -16,10 +16,12 @@ format:
     chalkboard: true
     # embed-resources: true
     # standalone: true
+    background-image: https://apod.nasa.gov/apod/image/2406/GiganticJets_Xuanhua_2048.jpg
     header: Quarto RevealJS Template
+    theme: [default, custom.scss]
 revealjs-plugins:
   - confetti
-footer: "**Slides** : [**ns-rse.github.io/sheffieldr-fabricatr-20240621**](https://ns-rse.github.io/sheffieldr-fabricatr-20240621)"
+footer: "[**Background** Gigantic Jet Lightning NASA Astronomy Picture of the Day 2024-06-18](https://apod.nasa.gov/apod/ap240618.html)"
 project:
   preview:
     port: 7864
@@ -43,7 +45,7 @@ filters:
 ::: {.column width="30%"}
 
 + Rarely work on my own data.
-+ Literate, reproducible workflow
++ Literate programming, reproducible workflow
   + [Org-Babel][org-babel]
   + [RMarkdown][rmarkdown]
   + [Quarto][quarto].
@@ -53,34 +55,56 @@ filters:
 
 ::: {.column width="70%"}
 
-![The Turing Way project illustration by Scriberia. Used under a CC-BY 4.0 licence. DOI:
-[10.5281/zenodo.3332807](https://doi.org/10.5281/zenodo.3332807)](https://the-turing-way.netlify.app/_images/reproducibility.jpg)
+![The Turing Way project illustration by Scriberia. Used under a CC-BY 4.0 licence. DOI: [10.5281/zenodo.3332807](https://doi.org/10.5281/zenodo.3332807)](https://the-turing-way.netlify.app/_images/research-cycle.svg)
 :::
 ::::
 
 ::: {.notes}
-Speaker Notes can be added to each slide. **Formatting** can be used here too.
-::
-:
+I've been a statistician, data scientist and more recently a Research Software Engineer for a number of years now and I
+rarely work on my own data. I collaborate with other researchers and either analyse their data for them or help guide
+them through the process of undertaking the anayyses themselves.
+My approach to doing this is to use a literate programming approach, a term introduced by computer scientist Donald
+Knuth, which has seend wide adoption in statistical and data science circles whereby text and code are inter-weaved into
+essentially scripts that can be re-run to clean, summarise plot and analys the data.
+
+But there is a common problem that I encounter
+:::
+
 ## Problem
 
 :::: {.columns}
 
 ::: {.column width="30%"}
 
-+ Rarely is full data set available!
+Rarely is the final data set available!
+
+
+<!-- ![The Turing Way project illustration by Scriberia. Used under a CC-BY 4.0 licence. DOI: -->
+<!-- [10.5281/zenodo.3332807](https://doi.org/10.5281/zenodo.3332807)](https://the-turing-way.netlify.app/_images/reproducibility.jpg) -->
 
 :::
 
 ::: {.column width="70%"}
 
-![The Turing Way project illustration by Scriberia. Used under a CC-BY 4.0 licence. DOI: [10.5281/zenodo.3332807](https://doi.org/10.5281/zenodo.3332807)](https://the-turing-way.netlify.app/_images/research-cycle.svg)
+
+"_To consult the statistician after an experiment is finished is often merely to ask him to conduct a post mortem
+examination. He can perhaps say what the experiment died of._" - R.A. Fisher
+
+![](https://www.infoamerica.org/teoria_imagenes/fisher2.jpg)
 
 :::
+
 ::::
 
 ::: {.notes}
-Speaker Notes can be added to each slide. **Formatting** can be used here too.
+Rarely is the full data set available, which can make it challenging to get started on developing the reproducible
+pipeline for analysing thet data.
+
+If I'm really lucky people will be in contact before they've started their research and we can collaborate on what data
+should be collected and avoid the post-mortem scenario RA Fisher refers to in this well known quote.
+
+Typically though that isn't the case they have some data that is partially collected and they want to start
+interrogating it.
 :::
 
 ## Solution
@@ -91,6 +115,15 @@ Speaker Notes can be added to each slide. **Formatting** can be used here too.
 
 + Simulate data!
 
+::: {.notes}
+But all is not lost, if the structure of just a subset of the data is known, for example if there is a database schema
+or data dictionary for the researchers data then we can get started on developing our workflow by simulating some data
+and developing our scripts and literate programming workflow with the sample data.
+
+This doesn't help with what is often the bulk of the work of any analysis which is cleaning and tidying the data but it
+gives us something to work with for the tables, graphs and statistical analyses we might want to undertake.
+:::
+
 ## Fabricatr
 
 + [fabricatr][fabricatr] - _Imagine Your Data Before You Collect It_
@@ -100,13 +133,16 @@ Speaker Notes can be added to each slide. **Formatting** can be used here too.
 ::: {.column width="50%"}
 
 ```r
+#| label: setup
+#| warning: false
+#| eval: true
+#| echo: true
 install.packages(c("fabricatr", "tidyverse"))
 library(correlate)
 library(dplyr)
 library(fabricatr)
+library(ggplot2)
 library(tidyr)
-library(visdat)
-library(nanair)
 
 set.seed(55138)
 ```
@@ -125,7 +161,13 @@ set.seed(55138)
 ::::
 
 ::: {.notes}
-Speaker Notes can be added to each slide. **Formatting** can be used here too.
+The [`fabricatr`][fabricatr] package is a relatively new package that makes it easy to simulate lots of different types
+of variables such as binary, categorical, continuous or count data and often with various different structures such as
+time-series, correlation between variables and even nested study designs with intra-class correlation.
+
+As the tag-line on the site reads you can _Imagine your data before you collect it!_
+
+I've setup some basic examples to show how this package works and will run through some scenarios.
 :::
 
 ## Basic Example
@@ -135,8 +177,8 @@ Speaker Notes can be added to each slide. **Formatting** can be used here too.
 ::: {.column width="50%"}
 
 + 100 observations.
-+ Binary : [`draw_binary()`][draw-discrete].
-+ Binomial : [`draw_binomial()`][draw-discrete].
++ Binary : [`draw_binary()`][draw_discrete].
++ Binomial : [`draw_binomial()`][draw_discrete].
 + Continuous (0-1) : [`runif()`][runif].
 + Random Normal (mean = 38, sd = 16) : [`rnorm()`][rnorm].
 
@@ -170,7 +212,21 @@ dummy_df |> head()
 ::::
 
 ::: {.notes}
-[R](https://www.r-project.org/) code can be embeded and executed to produce tables and figures.
+The main funciton is `fabricate()` which needs to know the number of observations you wish to simulate in the argument
+`N` and I've opted to keep the dataset small here and just have 100 observations.
+
+We create a `binary` variable using the `draw_binary()` function which takes the value N and we define the probability
+function we wish to use to draw samples from, in this case a uniform distribution using R's base function `runif()`.
+
+We then create a `binomial` variable with two trials to give us what is essentially count data using the `draw_binomial()`
+function, which needs a probability distribution from which to make draws and again we use the uniform distribution but
+it needs to know the number of trials we wish to simulate and here we have specified `2` so the resulting values of
+`binomial` will be `0`, `1` or `2`.
+
+Next we create a `uniform` variable sampling directly from the base R function `runif()`.
+
+Finall we create a `random_normal` variable by sampling from a normal distribution with mean of 38 and a standard
+deviation of 16.
 :::
 
 ## Basic Example - Summary
@@ -196,28 +252,37 @@ gtsummary::tbl_summary(
 
 ```
 
-:::
-::: {.column width="50%"}
-
 ```{r}
 #| label: fig-fabricatr-basic-histogram
-#| fig-cap: Random Normal variable.
 #| warning: false
 #| eval: true
 #| echo: false
 library(ggplot2)
 
 ggplot(dummy_df, aes(random_normal)) +
-   geom_histogram()
-
-ggplot(dummy_df, aes(binary)) +
-   geom_bar() +
+   geom_histogram() +
    ggtitle("Random Normal Variable")
+
 ```
+
+:::
+::: {.column width="50%"}
+
+
+```{r}
+#| label: fig-fabricatr-basic-binomial-bar
+#| warning: false
+#| eval: true
+#| echo: false
+ggplot2::ggplot(dummy_df, aes(binomial, fill=binomial)) +
+    ggplot2::geom_bar() +
+    ggtitle("Binomial Variable")
+
+```
+
 
 ```{r}
 #| label: fig-fabricatr-basic-bar
-#| fig-cap: Binary variable.
 #| warning: false
 #| eval: true
 #| echo: false
@@ -241,7 +306,7 @@ ggplot(dummy_df, aes(binary, fill = binary)) +
 
 + 100 observations
 + Random Normal (mean = 0, sd = 1) : [`rnorm()`][rnorm]
-+ Categorise using [`draw_ordered()`][draw-discrete] and setting `breaks`.
++ Categorise using [`draw_ordered()`][draw_discrete] and setting `breaks`.
 + Label variables with `break_labels`
 
 :::
@@ -279,7 +344,10 @@ cat_df <- fabricatr::fabricate(
 ::::
 
 ::: {.notes}
-[R](https://www.r-project.org/) code can be embeded and executed to produce tables and figures.
+Fabricatr also supports generating ordered categorical variables as you might get from surveys and we can generate these
+using the `draw_ordered()` function.
+First we generate a random normal variable `x` using `rnorm()` for our sample size `N` of 100 and this is passed to the
+`draw_ordered()` function where we specify a series of break points and labels for each of the categories that have been formed.
 :::
 
 ## Categorical Variables - Summary
@@ -310,8 +378,10 @@ gtsummary::tbl_summary(
 #| warning: false
 #| eval: true
 #| echo: false
-ggplot(cat_df, aes(ordered, fill=ordered)) +
-    geom_bar()
+library(ggplot2)
+
+ggplot2::ggplot(cat_df, aes(ordered, fill=ordered)) +
+    ggplot2::geom_bar()
 
 ```
 
@@ -320,7 +390,8 @@ ggplot(cat_df, aes(ordered, fill=ordered)) +
 ::::
 
 ::: {.notes}
-[R](https://www.r-project.org/** code can be embeded and executed to produce tables and figures.
+We can tabulate this data using the excellent [`gtsummary`][gtsummary] package and also plot the data to see how many
+there are in each category.
 :::
 
 
@@ -333,9 +404,9 @@ ggplot(cat_df, aes(ordered, fill=ordered)) +
 ::: {.column width="50%"}
 
 + 100 observations
-+ Random Normal  `y` (mean = 38, sd = 16) :  using [`rnorm()`][rnorm]
-+ Random normal `a` (mean = 78, sd = 14) : [`rnorm()`][rnorm] rank correlation with `y` of `0.8` using [`correlate`][correlate]
-+ Random normal `b` (mean = 46, sd = 18) : [`rnorm()`][rnorm] rank correlation with `y` of `-0.4` using [`correlate`][correlate]
++ `y` (mean = 38, sd = 16) :  using [`rnorm()`][rnorm]
++ `a` (mean = 78, sd = 14) : [`rnorm()`][rnorm] rank correlation with `y` of `0.8` using [`correlate`][correlate]
++ `b` (mean = 46, sd = 18) : [`rnorm()`][rnorm] rank correlation with `y` of `-0.4` using [`correlate`][correlate]
 
 :::
 ::: {.column width="50%"}
@@ -358,7 +429,6 @@ corr_df <- fabricatr::fabricate(
                              rnorm,
                              mean = 46,
                              sd = 18)
-
 )
 ```
 
@@ -367,9 +437,66 @@ corr_df <- fabricatr::fabricate(
 ::::
 
 ::: {.notes}
-[R](https://www.r-project.org/) code can be embeded and executed to produce tables and figures.
+It is also possible to generate correlated variables here we again use a sample size of 100 and simulate `y` from a
+random normal distribution with a mean of 64 and a standard deviation of 11.
+
+We then use the `correlate()` function to simulate `a` and `b` which are conditional on `y`. A has a rank correlation
+coefficient of 0.8 and samples from a normal distribution with a mean of 78 and standard deviation of 14, whilst `b` has
+a negative correlation with `y` of -0.4 and is a continuous variable drawn from a normal distribution with mean of 46
+and standard dewviation of 18. And obviously `b` will be negatively correlated with `a`, albeit with a lower correlation.
 :::
 
+
+##  Correlated Continuous Variables - Summary {.scrollable}
+
+
+<!-- **y ~ a** -->
+
+```{r}
+#| label: fabricatr-correlated-continuous-scatter-y-a
+#| warning: false
+#| eval: true
+#| echo: false
+corr_df |>
+ggplot2::ggplot() +
+  ggplot2::geom_point(aes(x = a, y = y, color="red")) +
+  ggplot2::stat_smooth(aes(x = a, y = y, color="red")) +
+  ggtitle("y ~ a")
+
+```
+
+<!-- **y ~ b** -->
+
+```{r}
+#| label: fabricatr-correlated-continuous-scatter-y-b
+#| warning: false
+#| eval: true
+#| echo: false
+corr_df |>
+ggplot2::ggplot() +
+  ggplot2::geom_point(aes(x = b, y = y, color="blue")) +
+  ggplot2::stat_smooth(aes(x = b, y = y, color="blue")) +
+  ggtitle("y ~ b")
+```
+
+<!-- **b ~ a** -->
+
+```{r}
+#| label: fabricatr-correlated-continuous-scatter-b-a
+#| warning: false
+#| eval: true
+#| echo: false
+corr_df |>
+ggplot2::ggplot() +
+  ggplot2::geom_point(aes(x = a, y = b, color="blue")) +
+  ggplot2::stat_smooth(aes(x = a, y = b, color="blue")) +
+  ggtitle("b ~ a")
+```
+
+::: {.notes}
+Here I've made some simple scatter plots of the continuous variables to show how the correlation relates. Note that it
+is not perfect because of the randomness involved in sample...
+:::
 
 ## Correlated Continuous Variables - Summary
 
@@ -389,6 +516,7 @@ gtsummary::tbl_summary(
 
 ```
 
+
 :::
 ::: {.column width="50%"}
 
@@ -407,13 +535,13 @@ cov_tibble <- cov_tibble |>
         term = factor(term, levels = unique_vars),
         var = factor(var, levels = rev(unique_vars)))
 ggplot2::ggplot(cov_tibble, aes(term, var)) +
-  geom_tile(aes(fill = correlation)) +
-  geom_text(aes(label = round(correlation, 3))) +
-  labs(x = element_blank(),
+  ggplot2::geom_tile(aes(fill = correlation)) +
+  ggplot2::geom_text(aes(label = round(correlation, 3))) +
+  ggplot2::labs(x = element_blank(),
        y = element_blank(),
        fill = "Correlation",
        title = "Correlation in Simulated Data") +
-  scale_fill_gradient2(
+  ggplot2::scale_fill_gradient2(
     high = "firebrick2",
     mid = "white",
     low = "dodgerblue4"
@@ -425,10 +553,10 @@ ggplot2::ggplot(cov_tibble, aes(term, var)) +
 ::::
 
 ::: {.notes}
-[R](https://www.r-project.org/) code can be embeded and executed to produce tables and figures.
+...but as we can see from the correlation coefficients... between the variables is roughly what we specified.
 :::
 
-## Correlated Discrete Variables
+## Correlated Discrete Variables {.scrollable}
 
 **EXPERIMENTAL**
 
@@ -452,7 +580,9 @@ ggplot2::ggplot(cov_tibble, aes(term, var)) +
 #| echo: true
 corr_discrete_df <- fabricatr::fabricate(
     N = 100,
-    q1 = fabricatr::draw_binomial(prob = 0.38, trials = 10, N = N),
+    q1 = fabricatr::draw_binomial(prob = 0.38,
+                                  trials = 10,
+                                  N = N),
     q2 = fabricatr::correlate(given = q1,
                              rho = 0.74,
                              fabricatr::draw_binomial,
@@ -471,7 +601,8 @@ corr_discrete_df <- fabricatr::fabricate(
 ::::
 
 ::: {.notes}
-[R](https://www.r-project.org/) code can be embeded and executed to produce tables and figures.
+In a similar vein we can correlate the discrete variables and here we draw count data using `draw_binomial` and
+specify a positive correlation of `0.74` between `q1` and `q2` and a negativecorrelation of `-0.89` bbetween `q2` and `q3`.
 :::
 
 
@@ -497,6 +628,45 @@ gtsummary::tbl_summary(
 ::: {.column width="50%"}
 
 ```{r}
+#| label: fabricatr-correlated-discrete-summary-table1
+#| tbl-caption: Tabulation of `q1` v `q2`
+#| warning: false
+#| eval: true
+#| echo: false
+table(corr_discrete_df$q1, corr_discrete_df$q2 ) |>
+  knitr::kable("simple",
+               caption = "Tabulation of `q1` v `q2`",
+               row.names= TRUE)
+
+```
+```{r}
+#| label: fabricatr-correlated-discrete-summary-table2
+#| warning: false
+#| eval: true
+#| echo: false
+table(corr_discrete_df$q2, corr_discrete_df$q3 ) |>
+  knitr::kable("simple",
+               caption = "Tabulation of `q2` v `q3`",
+               row.names= TRUE)
+
+```
+
+:::
+
+::::
+
+::: {.notes}
+We can summarise the data, again using the excellent [`gtsummary`][gtsummary] package and if we tabulate `q1` and `q2`
+we can see the positive correlation as higher counts of `q1` correspond to higher counts of `q2`.
+
+For `q2` and `q3` we can see that the negative correlation we specified is borne out in the simulated data with high
+values of `q2` (the rows) corresponding to lower values of `q3` the columns.
+:::
+
+## Correlated Discrete Variables - Summary {.scrollable}
+
+
+```{r}
 #| label: fabricatr-correlated-discrete-heatmap
 #| warning: false
 #| eval: true
@@ -511,94 +681,145 @@ cov_tibble <- cov_tibble |>
         term = factor(term, levels = unique_vars),
         var = factor(var, levels = rev(unique_vars)))
 ggplot2::ggplot(cov_tibble, aes(term, var)) +
-  geom_tile(aes(fill = correlation)) +
-  geom_text(aes(label = round(correlation, 3))) +
-  labs(x = element_blank(),
+  ggplot2::geom_tile(aes(fill = correlation)) +
+  ggplot2::geom_text(aes(label = round(correlation, 3))) +
+  ggplot2::labs(x = element_blank(),
        y = element_blank(),
        fill = "Correlation",
        title = "Correlation in Simulated Data") +
-  scale_fill_gradient2(
+  ggplot2::scale_fill_gradient2(
     high = "firebrick2",
     mid = "white",
     low = "dodgerblue4"
   )
 ```
 
-:::
-
-::::
-
 ::: {.notes}
-[R](https://www.r-project.org/) code can be embeded and executed to produce tables and figures.
+...and as with the continuous variables we can calculate the correlation coefficients and plot them as a heatmap. The
+values aren't exactly what we specified because of random sampling but the pattern is there.
 :::
 
-## Intra Class Correlation (ICC)
+## Intra Class Correlation (ICC) {.scrollable}
 
-:::: {.columns}
 
-::: {.column width="50%"}
-
-+ Nested study design (e.g. schools, counties)
-
-:::
-::: {.column width="50%"}
 
 ```{r}
 #| label: fabricatr-icc
 #| warning: false
 #| eval: true
 #| echo: true
+
+schools_data <- fabricatr::fabricate(
+  primary_schools = fabricatr::add_level(N = 20,
+                      ps_quality = runif(N, 1, 10)),
+  secondary_schools = fabricatr::add_level(N = 15,
+                        ss_quality = runif(N, 1, 10),
+                        nest = FALSE),
+  students = fabricatr::link_levels(N = 1500,
+               by = fabricatr::join_using(primary_schools,
+                       secondary_schools),
+               SAT_score = 800 + 13 * ps_quality + 26 * ss_quality +
+                           rnorm(N, 0, 50)
+             )
+)
 ```
+
+::: {.notes}
++ Nested study design (e.g. schools, counties)
++ Lifted straight from
+  [documentation](https://declaredesign.org/r/fabricatr/articles/cross_classified.html#specifying-a-merge-function-for-cross-classified-data-)
++ Students (`n 1500`) at primary (`ps_quality; n = 20`) and secondary (`ss_quality; n = 15`) school.
++ `SAT_score` is baseline (`800`) plus an additive effect for `ps_quality` and `ss_quality` and an additional random factor.
 
 :::
 
-::::
-
 ## Intra Class Correlation (ICC) - Summary
 
-:::: {.columns}
-
-::: {.column width="50%"}
 
 ```{r}
 #| label: fabricatr-icc-summary
 #| warning: false
 #| eval: true
-#| echo: false
-
+#| echo: true
+lm(SAT_score ~ ps_quality + ss_quality, data = schools_data)
 ```
 
-:::
-::: {.column width="50%"}
-
-```{r}
-#| label: fabricatr-icc-heatmap
-#| warning: false
-#| eval: true
-#| echo: false
-
-```
-
-:::
-
-::::
 
 ::: {.notes}
-[R](https://www.r-project.org/) code can be embeded and executed to produce tables and figures.
+If we then run a simple linear regression to predict the `SAT_score` from the quality of the `primary` and `secondary`
+school we see that intercept is indeed `800` and the coefficients for the effect of primary school is `13` and secondary
+`26` as was specified.
+:::
+
+## Intra Class Correlation (ICC) {.scrollable}
+
+
+
+```{r}
+#| label: fabricatr-icc-correlate
+#| warning: false
+#| eval: true
+#| echo: true
+
+schools_data <- fabricatr::fabricate(
+  primary_schools = fabricatr::add_level(N = 20,
+                      ps_quality = runif(N, 1, 10)),
+  secondary_schools = fabricatr::add_level(N = 15,
+                        ss_quality = runif(N, 1, 10),
+                        nest = FALSE),
+  students = fabricatr::link_levels(N = 1500,
+               by = fabricatr::join_using(primary_schools,
+                               secondary_schools,
+                               rho = 0.5),
+               SAT_score = 800 + 13 * ps_quality + 26 * ss_quality +
+                           rnorm(N, 0, 50)
+             )
+)
+```
+
+
+::: {.notes}
+We can introduce correlation between the quality of the primary and secondary school by specifying a value for `rho`
+(the spearkman rank correlation) in the `join_using()` call.
+:::
+
+
+## Time Series
+
++ [Time series data with fabricatr](https://declaredesign.org/r/fabricatr/articles/time_series.html)
++ Can use the [`forecast`][forecast] package to generate ARIMA data.
+
+::: {.notes}
+Time series data can also be simulated, but I've not had time to prepare an example of this so I refer you to the
+authors article.
+Because you can use any other data creation package with `fabricatr` it is possible to leverage the
+[`forecast`][forecast] package to generate Auto-Regressive Integrated Moving Average data.
 :::
 
 ## Summary
 
 + [fabricatr][fabricatr] powerful but _easy_ to use.
-+ Simulate data and setup analytical workflow.
++ Simulate data and setup analytical workflow (tables/graphs/models).
 + Not useful for _cleaning/tidying_ real data (~80% of work!).
 + Need good database schema/data dictionary
 
 
+## Links
+
++ [fabricatr][fabricatr]
+  + [Getting started with fabricatr](https://declaredesign.org/r/fabricatr/articles/getting_started.html)
+  + [Building and Importing Data](https://declaredesign.org/r/fabricatr/articles/building_importing.html)
+  + [Common Social Science variables](https://declaredesign.org/r/fabricatr/articles/common_social.html)
+  + [Panel and Cross-classified data](https://declaredesign.org/r/fabricatr/articles/cross_classified.html)
+  + [Time series data with fabricatr](https://declaredesign.org/r/fabricatr/articles/time_series.html)
+  + [Time series data with fabricatr](https://declaredesign.org/r/fabricatr/articles/time_series.html)
++ [gtsummary][gtsummary]
 
 [correlate]: https://declaredesign.org/r/fabricatr/reference/correlate.html
-[draw-discrete]: https://declaredesign.org/r/fabricatr/reference/draw_discrete.html
+[draw_discrete]: https://declaredesign.org/r/fabricatr/reference/draw_discrete.html
 [fabricatr]: https://declaredesign.org/r/fabricatr/
+[forecast]: https://pkg.robjhyndman.com/forecast/
+[gtsummary]: https://www.danieldsjoberg.com/gtsummary/
 [org-babel]: https://orgmode.org/worg/org-contrib/babel/
 [rmarkdown]: https://bookdown.org/yihui/rmarkdown/
 [quarto]: https://quarto.org

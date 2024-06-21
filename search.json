@@ -11,97 +11,139 @@
     "href": "index.html#motivation",
     "title": "No Data, No Worries : Fabricatr",
     "section": "Motivation",
-    "text": "Motivation\n\n\n\nRarely work on my own data.\nLiterate, reproducible workflow\n\nOrg-Babel\nRMarkdown\nQuarto.\n\nScripts to clean, summarise, plot and analyse data.\n\n\n\n\n\nThe Turing Way project illustration by Scriberia. Used under a CC-BY 4.0 licence. DOI: 10.5281/zenodo.3332807\n\n\n\n\n::: {.notes} Speaker Notes can be added to each slide. Formatting can be used here too. :: : ## Problem\n\n\n\nRarely is full data set available!\n\n\n\n\n\nThe Turing Way project illustration by Scriberia. Used under a CC-BY 4.0 licence. DOI: 10.5281/zenodo.3332807\n\n\n\n\n\nSpeaker Notes can be added to each slide. Formatting can be used here too."
+    "text": "Motivation\n\n\n\nRarely work on my own data.\nLiterate programming, reproducible workflow\n\nOrg-Babel\nRMarkdown\nQuarto.\n\nScripts to clean, summarise, plot and analyse data.\n\n\n\n\n\nThe Turing Way project illustration by Scriberia. Used under a CC-BY 4.0 licence. DOI: 10.5281/zenodo.3332807\n\n\n\n\n\nI’ve been a statistician, data scientist and more recently a Research Software Engineer for a number of years now and I rarely work on my own data. I collaborate with other researchers and either analyse their data for them or help guide them through the process of undertaking the anayyses themselves. My approach to doing this is to use a literate programming approach, a term introduced by computer scientist Donald Knuth, which has seend wide adoption in statistical and data science circles whereby text and code are inter-weaved into essentially scripts that can be re-run to clean, summarise plot and analys the data.\nBut there is a common problem that I encounter"
+  },
+  {
+    "objectID": "index.html#problem",
+    "href": "index.html#problem",
+    "title": "No Data, No Worries : Fabricatr",
+    "section": "Problem",
+    "text": "Problem\n\n\nRarely is the final data set available!\n\n\n\n“To consult the statistician after an experiment is finished is often merely to ask him to conduct a post mortem examination. He can perhaps say what the experiment died of.” - R.A. Fisher\n\n\n\n\nRarely is the full data set available, which can make it challenging to get started on developing the reproducible pipeline for analysing thet data.\nIf I’m really lucky people will be in contact before they’ve started their research and we can collaborate on what data should be collected and avoid the post-mortem scenario RA Fisher refers to in this well known quote.\nTypically though that isn’t the case they have some data that is partially collected and they want to start interrogating it."
   },
   {
     "objectID": "index.html#solution",
     "href": "index.html#solution",
     "title": "No Data, No Worries : Fabricatr",
     "section": "Solution",
-    "text": "Solution\n\nDatabase schema/dictionary?\n\n\n\nSimulate data!"
+    "text": "Solution\n\nDatabase schema/dictionary?\n\n\n\nSimulate data!\n\n\nBut all is not lost, if the structure of just a subset of the data is known, for example if there is a database schema or data dictionary for the researchers data then we can get started on developing our workflow by simulating some data and developing our scripts and literate programming workflow with the sample data.\nThis doesn’t help with what is often the bulk of the work of any analysis which is cleaning and tidying the data but it gives us something to work with for the tables, graphs and statistical analyses we might want to undertake."
   },
   {
     "objectID": "index.html#fabricatr",
     "href": "index.html#fabricatr",
     "title": "No Data, No Worries : Fabricatr",
     "section": "Fabricatr",
-    "text": "Fabricatr\n\nfabricatr - Imagine Your Data Before You Collect It\n\n\n\ninstall.packages(c(\"fabricatr\", \"tidyverse\"))\nlibrary(correlate)\nlibrary(dplyr)\nlibrary(fabricatr)\nlibrary(tidyr)\nlibrary(visdat)\nlibrary(nanair)\n\nset.seed(55138)\n\n\nBinary variables\nCategorical/factors\nContinuous\nTime-Series\nCorrelated\nIntra-Class Correlation (ICC)\n\n\n\n\nSpeaker Notes can be added to each slide. Formatting can be used here too."
+    "text": "Fabricatr\n\nfabricatr - Imagine Your Data Before You Collect It\n\n\n\n#| label: setup\n#| warning: false\n#| eval: true\n#| echo: true\ninstall.packages(c(\"fabricatr\", \"tidyverse\"))\nlibrary(correlate)\nlibrary(dplyr)\nlibrary(fabricatr)\nlibrary(ggplot2)\nlibrary(tidyr)\n\nset.seed(55138)\n\n\nBinary variables\nCategorical/factors\nContinuous\nTime-Series\nCorrelated\nIntra-Class Correlation (ICC)\n\n\n\n\nThe fabricatr package is a relatively new package that makes it easy to simulate lots of different types of variables such as binary, categorical, continuous or count data and often with various different structures such as time-series, correlation between variables and even nested study designs with intra-class correlation.\nAs the tag-line on the site reads you can Imagine your data before you collect it!\nI’ve setup some basic examples to show how this package works and will run through some scenarios."
   },
   {
     "objectID": "index.html#basic-example",
     "href": "index.html#basic-example",
     "title": "No Data, No Worries : Fabricatr",
     "section": "Basic Example",
-    "text": "Basic Example\n\n\n\n100 observations.\nBinary : draw_binary().\nBinomial : draw_binomial().\nContinuous (0-1) : runif().\nRandom Normal (mean = 38, sd = 16) : rnorm().\n\n\n\ndummy_df &lt;- fabricatr::fabricate(\n    N = 100,\n    binary = fabricatr::draw_binary(\n        N,\n        prob = runif(N)\n        ),\n    binomial = fabricatr::draw_binomial(\n        prob = runif(N),\n        trials = 2\n        ),\n    uniform = runif(N),\n    random_normal = rnorm(N, 38, 16)\n)\ndummy_df |&gt; head()\n\n   ID binary binomial    uniform random_normal\n1 001      1        1 0.03811388      13.00777\n2 002      0        0 0.43737164      65.07028\n3 003      0        2 0.79656311      40.77489\n4 004      1        2 0.09203046      37.34923\n5 005      0        0 0.41416496      55.10216\n6 006      1        0 0.27111614      35.80063\n\n\n\n\n\nR code can be embeded and executed to produce tables and figures."
+    "text": "Basic Example\n\n\n\n100 observations.\nBinary : draw_binary().\nBinomial : draw_binomial().\nContinuous (0-1) : runif().\nRandom Normal (mean = 38, sd = 16) : rnorm().\n\n\n\ndummy_df &lt;- fabricatr::fabricate(\n    N = 100,\n    binary = fabricatr::draw_binary(\n        N,\n        prob = runif(N)\n        ),\n    binomial = fabricatr::draw_binomial(\n        prob = runif(N),\n        trials = 2\n        ),\n    uniform = runif(N),\n    random_normal = rnorm(N, 38, 16)\n)\ndummy_df |&gt; head()\n\n   ID binary binomial     uniform random_normal\n1 001      0        2 0.241211455      14.98915\n2 002      0        2 0.002083675      28.97463\n3 003      0        2 0.102645113      59.94338\n4 004      1        2 0.124053932      39.85355\n5 005      1        0 0.863406008      45.04457\n6 006      1        0 0.655067994      59.41866\n\n\n\n\n\nThe main funciton is fabricate() which needs to know the number of observations you wish to simulate in the argument N and I’ve opted to keep the dataset small here and just have 100 observations.\nWe create a binary variable using the draw_binary() function which takes the value N and we define the probability function we wish to use to draw samples from, in this case a uniform distribution using R’s base function runif().\nWe then create a binomial variable with two trials to give us what is essentially count data using the draw_binomial() function, which needs a probability distribution from which to make draws and again we use the uniform distribution but it needs to know the number of trials we wish to simulate and here we have specified 2 so the resulting values of binomial will be 0, 1 or 2.\nNext we create a uniform variable sampling directly from the base R function runif().\nFinall we create a random_normal variable by sampling from a normal distribution with mean of 38 and a standard deviation of 16."
   },
   {
     "objectID": "index.html#basic-example---summary",
     "href": "index.html#basic-example---summary",
     "title": "No Data, No Worries : Fabricatr",
     "section": "Basic Example - Summary",
-    "text": "Basic Example - Summary\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN = 1001\n\n\n\n\nbinary\n42 (42%)\n\n\nbinomial\n\n\n\n\n    0\n39 (39%)\n\n\n    1\n31 (31%)\n\n\n    2\n30 (30%)\n\n\nuniform\n0.48 (0.25, 0.75)\n\n\nrandom_normal\n39 (29, 49)\n\n\n\n1 n (%); Median (IQR)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1: Random Normal variable.\n\n\n\n\n\n\n\n\n\n\n\nFigure 2: Random Normal variable.\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 3: Binary variable."
+    "text": "Basic Example - Summary\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN = 1001\n\n\n\n\nbinary\n41 (41%)\n\n\nbinomial\n\n\n\n\n    0\n38 (38%)\n\n\n    1\n30 (30%)\n\n\n    2\n32 (32%)\n\n\nuniform\n0.38 (0.16, 0.70)\n\n\nrandom_normal\n38 (25, 49)\n\n\n\n1 n (%); Median (IQR)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 2\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 3"
   },
   {
     "objectID": "index.html#categorical-variables",
     "href": "index.html#categorical-variables",
     "title": "No Data, No Worries : Fabricatr",
     "section": "Categorical Variables",
-    "text": "Categorical Variables\n\n\n\n100 observations\nRandom Normal (mean = 0, sd = 1) : rnorm()\nCategorise using draw_ordered() and setting breaks.\nLabel variables with break_labels\n\n\n\ncat_df &lt;- fabricatr::fabricate(\n    N = 100,\n    x = rnorm(N),\n    ordered = fabricatr::draw_ordered(\n        x,\n        breaks = c(-Inf,\n                   -1,\n                   -0.5,\n                   0,\n                   0.5,\n                   1,\n                   Inf),\n        break_labels = c(\"Group 1\",\n                         \"Group 2\",\n                         \"Group 3\",\n                         \"Group 4\",\n                         \"Group 5\",\n                         \"Group 6\")\n    )\n)\n\n\n\n\nR code can be embeded and executed to produce tables and figures."
+    "text": "Categorical Variables\n\n\n\n100 observations\nRandom Normal (mean = 0, sd = 1) : rnorm()\nCategorise using draw_ordered() and setting breaks.\nLabel variables with break_labels\n\n\n\ncat_df &lt;- fabricatr::fabricate(\n    N = 100,\n    x = rnorm(N),\n    ordered = fabricatr::draw_ordered(\n        x,\n        breaks = c(-Inf,\n                   -1,\n                   -0.5,\n                   0,\n                   0.5,\n                   1,\n                   Inf),\n        break_labels = c(\"Group 1\",\n                         \"Group 2\",\n                         \"Group 3\",\n                         \"Group 4\",\n                         \"Group 5\",\n                         \"Group 6\")\n    )\n)\n\n\n\n\nFabricatr also supports generating ordered categorical variables as you might get from surveys and we can generate these using the draw_ordered() function. First we generate a random normal variable x using rnorm() for our sample size N of 100 and this is passed to the draw_ordered() function where we specify a series of break points and labels for each of the categories that have been formed."
   },
   {
     "objectID": "index.html#categorical-variables---summary",
     "href": "index.html#categorical-variables---summary",
     "title": "No Data, No Worries : Fabricatr",
     "section": "Categorical Variables - Summary",
-    "text": "Categorical Variables - Summary\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN = 1001\n\n\n\n\nordered\n\n\n\n\n    Group 1\n21 (21%)\n\n\n    Group 2\n11 (11%)\n\n\n    Group 3\n16 (16%)\n\n\n    Group 4\n27 (27%)\n\n\n    Group 5\n11 (11%)\n\n\n    Group 6\n14 (14%)\n\n\n\n1 n (%)\n\n\n\n\n\n\nCategorical variable with six levels.\n\n\n\n\n\n\n\n\n\n\n\nFigure 4\n\n\n\n\n\n\n\n\n[R](https://www.r-project.org/** code can be embeded and executed to produce tables and figures."
+    "text": "Categorical Variables - Summary\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN = 1001\n\n\n\n\nordered\n\n\n\n\n    Group 1\n14 (14%)\n\n\n    Group 2\n13 (13%)\n\n\n    Group 3\n19 (19%)\n\n\n    Group 4\n22 (22%)\n\n\n    Group 5\n13 (13%)\n\n\n    Group 6\n19 (19%)\n\n\n\n1 n (%)\n\n\n\n\n\n\nCategorical variable with six levels.\n\n\n\n\n\n\n\n\n\n\n\nFigure 4\n\n\n\n\n\n\n\n\nWe can tabulate this data using the excellent gtsummary package and also plot the data to see how many there are in each category."
   },
   {
     "objectID": "index.html#correlated-continuous-variables",
     "href": "index.html#correlated-continuous-variables",
     "title": "No Data, No Worries : Fabricatr",
     "section": "Correlated Continuous Variables",
-    "text": "Correlated Continuous Variables\nEXPERIMENTAL\n\n\n\n100 observations\nRandom Normal y (mean = 38, sd = 16) : using rnorm()\nRandom normal a (mean = 78, sd = 14) : rnorm() rank correlation with y of 0.8 using correlate\nRandom normal b (mean = 46, sd = 18) : rnorm() rank correlation with y of -0.4 using correlate\n\n\n\ncorr_df &lt;- fabricatr::fabricate(\n    N = 100,\n    y = rnorm(N, mean = 64, sd = 11),\n    a = fabricatr::correlate(given = y,\n                             rho = 0.8,\n                             rnorm,\n                             mean = 78,\n                             sd = 14),\n    b = fabricatr::correlate(given = y,\n                             rho = -0.4,\n                             rnorm,\n                             mean = 46,\n                             sd = 18)\n\n)\n\n\n\n\nR code can be embeded and executed to produce tables and figures."
+    "text": "Correlated Continuous Variables\nEXPERIMENTAL\n\n\n\n100 observations\ny (mean = 38, sd = 16) : using rnorm()\na (mean = 78, sd = 14) : rnorm() rank correlation with y of 0.8 using correlate\nb (mean = 46, sd = 18) : rnorm() rank correlation with y of -0.4 using correlate\n\n\n\ncorr_df &lt;- fabricatr::fabricate(\n    N = 100,\n    y = rnorm(N, mean = 64, sd = 11),\n    a = fabricatr::correlate(given = y,\n                             rho = 0.8,\n                             rnorm,\n                             mean = 78,\n                             sd = 14),\n    b = fabricatr::correlate(given = y,\n                             rho = -0.4,\n                             rnorm,\n                             mean = 46,\n                             sd = 18)\n)\n\n\n\n\nIt is also possible to generate correlated variables here we again use a sample size of 100 and simulate y from a random normal distribution with a mean of 64 and a standard deviation of 11.\nWe then use the correlate() function to simulate a and b which are conditional on y. A has a rank correlation coefficient of 0.8 and samples from a normal distribution with a mean of 78 and standard deviation of 14, whilst b has a negative correlation with y of -0.4 and is a continuous variable drawn from a normal distribution with mean of 46 and standard dewviation of 18. And obviously b will be negatively correlated with a, albeit with a lower correlation."
   },
   {
     "objectID": "index.html#correlated-continuous-variables---summary",
     "href": "index.html#correlated-continuous-variables---summary",
     "title": "No Data, No Worries : Fabricatr",
     "section": "Correlated Continuous Variables - Summary",
-    "text": "Correlated Continuous Variables - Summary\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN = 1001\n\n\n\n\ny\n63 (57, 70)\n\n\na\n78 (66, 86)\n\n\nb\n44 (34, 59)\n\n\n\n1 Median (IQR)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nR code can be embeded and executed to produce tables and figures."
+    "text": "Correlated Continuous Variables - Summary\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nHere I’ve made some simple scatter plots of the continuous variables to show how the correlation relates. Note that it is not perfect because of the randomness involved in sample…"
+  },
+  {
+    "objectID": "index.html#correlated-continuous-variables---summary-1",
+    "href": "index.html#correlated-continuous-variables---summary-1",
+    "title": "No Data, No Worries : Fabricatr",
+    "section": "Correlated Continuous Variables - Summary",
+    "text": "Correlated Continuous Variables - Summary\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN = 1001\n\n\n\n\ny\n64 (57, 70)\n\n\na\n78 (66, 86)\n\n\nb\n47 (38, 59)\n\n\n\n1 Median (IQR)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n…but as we can see from the correlation coefficients… between the variables is roughly what we specified."
   },
   {
     "objectID": "index.html#correlated-discrete-variables",
     "href": "index.html#correlated-discrete-variables",
     "title": "No Data, No Worries : Fabricatr",
     "section": "Correlated Discrete Variables",
-    "text": "Correlated Discrete Variables\nEXPERIMENTAL\n\n\n\n100 observations\nBinomial q1 (prob = 0.38, trials = 10) : using [draw_binomial()][draw_discrete]\nBinomial q1 (prob = 0.63, trials = 5) : [draw_binomial()][draw_discrete] rank correlation with q1 of 0.74 using correlate\nBinomial q3 (prob = 0.79, trials = 5) : [draw_binomial()][draw_discrete] rank correlation with q2 of -0.89 using correlate\n\n\n\ncorr_discrete_df &lt;- fabricatr::fabricate(\n    N = 100,\n    q1 = fabricatr::draw_binomial(prob = 0.38, trials = 10, N = N),\n    q2 = fabricatr::correlate(given = q1,\n                             rho = 0.74,\n                             fabricatr::draw_binomial,\n                             prob = 0.63,\n                             trials = 10),\n    q3 = fabricatr::correlate(given = q2,\n                             rho = -0.89,\n                             fabricatr::draw_binomial,\n                             prob = 0.79,\n                             trials = 10)\n)\n\n\n\n\nR code can be embeded and executed to produce tables and figures."
+    "text": "Correlated Discrete Variables\nEXPERIMENTAL\n\n\n\n100 observations\nBinomial q1 (prob = 0.38, trials = 10) : using draw_binomial()\nBinomial q1 (prob = 0.63, trials = 5) : draw_binomial() rank correlation with q1 of 0.74 using correlate\nBinomial q3 (prob = 0.79, trials = 5) : draw_binomial() rank correlation with q2 of -0.89 using correlate\n\n\n\ncorr_discrete_df &lt;- fabricatr::fabricate(\n    N = 100,\n    q1 = fabricatr::draw_binomial(prob = 0.38,\n                                  trials = 10,\n                                  N = N),\n    q2 = fabricatr::correlate(given = q1,\n                             rho = 0.74,\n                             fabricatr::draw_binomial,\n                             prob = 0.63,\n                             trials = 10),\n    q3 = fabricatr::correlate(given = q2,\n                             rho = -0.89,\n                             fabricatr::draw_binomial,\n                             prob = 0.79,\n                             trials = 10)\n)\n\n\n\n\nIn a similar vein we can correlate the discrete variables and here we draw count data using draw_binomial and specify a positive correlation of 0.74 between q1 and q2 and a negativecorrelation of -0.89 bbetween q2 and q3."
   },
   {
     "objectID": "index.html#correlated-discrete-variables---summary",
     "href": "index.html#correlated-discrete-variables---summary",
     "title": "No Data, No Worries : Fabricatr",
     "section": "Correlated Discrete Variables - Summary",
-    "text": "Correlated Discrete Variables - Summary\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN = 1001\n\n\n\n\nq1\n\n\n\n\n    1\n4 (4.0%)\n\n\n    2\n19 (19%)\n\n\n    3\n22 (22%)\n\n\n    4\n24 (24%)\n\n\n    5\n18 (18%)\n\n\n    6\n12 (12%)\n\n\n    7\n1 (1.0%)\n\n\nq2\n\n\n\n\n    3\n5 (5.0%)\n\n\n    4\n6 (6.0%)\n\n\n    5\n20 (20%)\n\n\n    6\n31 (31%)\n\n\n    7\n25 (25%)\n\n\n    8\n11 (11%)\n\n\n    9\n2 (2.0%)\n\n\nq3\n\n\n\n\n    5\n6 (6.0%)\n\n\n    6\n7 (7.0%)\n\n\n    7\n21 (21%)\n\n\n    8\n34 (34%)\n\n\n    9\n22 (22%)\n\n\n    10\n10 (10%)\n\n\n\n1 n (%)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nR code can be embeded and executed to produce tables and figures."
+    "text": "Correlated Discrete Variables - Summary\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCharacteristic\nN = 1001\n\n\n\n\nq1\n4 (3, 5)\n\n\nq2\n\n\n\n\n    2\n1 (1.0%)\n\n\n    3\n2 (2.0%)\n\n\n    4\n7 (7.0%)\n\n\n    5\n21 (21%)\n\n\n    6\n23 (23%)\n\n\n    7\n33 (33%)\n\n\n    8\n10 (10%)\n\n\n    9\n1 (1.0%)\n\n\n    10\n2 (2.0%)\n\n\nq3\n\n\n\n\n    5\n3 (3.0%)\n\n\n    6\n9 (9.0%)\n\n\n    7\n25 (25%)\n\n\n    8\n27 (27%)\n\n\n    9\n27 (27%)\n\n\n    10\n9 (9.0%)\n\n\n\n1 Median (IQR); n (%)\n\n\n\n\n\n\n\n\n\n\n\n\nTabulation of q1 v q2\n\n\n\n2\n3\n4\n5\n6\n7\n8\n9\n10\n\n\n\n\n0\n0\n0\n2\n0\n0\n0\n0\n0\n0\n\n\n1\n0\n0\n3\n1\n1\n0\n0\n0\n0\n\n\n2\n1\n1\n1\n3\n5\n1\n0\n0\n0\n\n\n3\n0\n1\n1\n10\n8\n5\n0\n0\n0\n\n\n4\n0\n0\n0\n5\n5\n10\n2\n0\n0\n\n\n5\n0\n0\n0\n2\n1\n11\n4\n0\n0\n\n\n6\n0\n0\n0\n0\n2\n3\n1\n1\n0\n\n\n7\n0\n0\n0\n0\n1\n1\n3\n0\n0\n\n\n8\n0\n0\n0\n0\n0\n2\n0\n0\n1\n\n\n9\n0\n0\n0\n0\n0\n0\n0\n0\n1\n\n\n\n\n\n\n\n\nTabulation of q2 v q3\n\n\n\n5\n6\n7\n8\n9\n10\n\n\n\n\n2\n0\n0\n0\n0\n0\n1\n\n\n3\n0\n0\n0\n0\n1\n1\n\n\n4\n0\n0\n0\n0\n3\n4\n\n\n5\n0\n0\n0\n5\n13\n3\n\n\n6\n0\n0\n4\n10\n9\n0\n\n\n7\n0\n5\n15\n12\n1\n0\n\n\n8\n2\n2\n6\n0\n0\n0\n\n\n9\n0\n1\n0\n0\n0\n0\n\n\n10\n1\n1\n0\n0\n0\n0\n\n\n\n\n\n\n\n\nWe can summarise the data, again using the excellent gtsummary package and if we tabulate q1 and q2 we can see the positive correlation as higher counts of q1 correspond to higher counts of q2.\nFor q2 and q3 we can see that the negative correlation we specified is borne out in the simulated data with high values of q2 (the rows) corresponding to lower values of q3 the columns."
+  },
+  {
+    "objectID": "index.html#correlated-discrete-variables---summary-1",
+    "href": "index.html#correlated-discrete-variables---summary-1",
+    "title": "No Data, No Worries : Fabricatr",
+    "section": "Correlated Discrete Variables - Summary",
+    "text": "Correlated Discrete Variables - Summary\n\n\n\n\n\n\n\n\n\n\n…and as with the continuous variables we can calculate the correlation coefficients and plot them as a heatmap. The values aren’t exactly what we specified because of random sampling but the pattern is there."
   },
   {
     "objectID": "index.html#intra-class-correlation-icc",
     "href": "index.html#intra-class-correlation-icc",
     "title": "No Data, No Worries : Fabricatr",
     "section": "Intra Class Correlation (ICC)",
-    "text": "Intra Class Correlation (ICC)\n\n\n\nNested study design (e.g. schools, counties)"
+    "text": "Intra Class Correlation (ICC)\n\nschools_data &lt;- fabricatr::fabricate(\n  primary_schools = fabricatr::add_level(N = 20,\n                      ps_quality = runif(N, 1, 10)),\n  secondary_schools = fabricatr::add_level(N = 15,\n                        ss_quality = runif(N, 1, 10),\n                        nest = FALSE),\n  students = fabricatr::link_levels(N = 1500,\n               by = fabricatr::join_using(primary_schools,\n                       secondary_schools),\n               SAT_score = 800 + 13 * ps_quality + 26 * ss_quality +\n                           rnorm(N, 0, 50)\n             )\n)\n\n\n\nNested study design (e.g. schools, counties)\nLifted straight from documentation\nStudents (n 1500) at primary (ps_quality; n = 20) and secondary (ss_quality; n = 15) school.\nSAT_score is baseline (800) plus an additive effect for ps_quality and ss_quality and an additional random factor."
   },
   {
     "objectID": "index.html#intra-class-correlation-icc---summary",
     "href": "index.html#intra-class-correlation-icc---summary",
     "title": "No Data, No Worries : Fabricatr",
     "section": "Intra Class Correlation (ICC) - Summary",
-    "text": "Intra Class Correlation (ICC) - Summary\n\n\n\n\n\n\n\n\nR code can be embeded and executed to produce tables and figures."
+    "text": "Intra Class Correlation (ICC) - Summary\n\nlm(SAT_score ~ ps_quality + ss_quality, data = schools_data)\n\n\nCall:\nlm(formula = SAT_score ~ ps_quality + ss_quality, data = schools_data)\n\nCoefficients:\n(Intercept)   ps_quality   ss_quality  \n     800.03        12.89        25.82  \n\n\n\nIf we then run a simple linear regression to predict the SAT_score from the quality of the primary and secondary school we see that intercept is indeed 800 and the coefficients for the effect of primary school is 13 and secondary 26 as was specified."
+  },
+  {
+    "objectID": "index.html#intra-class-correlation-icc-1",
+    "href": "index.html#intra-class-correlation-icc-1",
+    "title": "No Data, No Worries : Fabricatr",
+    "section": "Intra Class Correlation (ICC)",
+    "text": "Intra Class Correlation (ICC)\n\nschools_data &lt;- fabricatr::fabricate(\n  primary_schools = fabricatr::add_level(N = 20,\n                      ps_quality = runif(N, 1, 10)),\n  secondary_schools = fabricatr::add_level(N = 15,\n                        ss_quality = runif(N, 1, 10),\n                        nest = FALSE),\n  students = fabricatr::link_levels(N = 1500,\n               by = fabricatr::join_using(primary_schools,\n                               secondary_schools,\n                               rho = 0.5),\n               SAT_score = 800 + 13 * ps_quality + 26 * ss_quality +\n                           rnorm(N, 0, 50)\n             )\n)\n\n\nWe can introduce correlation between the quality of the primary and secondary school by specifying a value for rho (the spearkman rank correlation) in the join_using() call."
+  },
+  {
+    "objectID": "index.html#time-series",
+    "href": "index.html#time-series",
+    "title": "No Data, No Worries : Fabricatr",
+    "section": "Time Series",
+    "text": "Time Series\n\nTime series data with fabricatr\nCan use the forecast package to generate ARIMA data.\n\n\nTime series data can also be simulated, but I’ve not had time to prepare an example of this so I refer you to the authors article. Because you can use any other data creation package with fabricatr it is possible to leverage the forecast package to generate Auto-Regressive Integrated Moving Average data."
   },
   {
     "objectID": "index.html#summary",
     "href": "index.html#summary",
     "title": "No Data, No Worries : Fabricatr",
     "section": "Summary",
-    "text": "Summary\n\nfabricatr powerful but easy to use.\nSimulate data and setup analytical workflow.\nNot useful for cleaning/tidying real data (~80% of work!).\nNeed good database schema/data dictionary\n\n\n\n\nSlides : ns-rse.github.io/sheffieldr-fabricatr-20240621\n\n\n\n\n\n\n\n \n\n\nQuarto RevealJS Template"
+    "text": "Summary\n\nfabricatr powerful but easy to use.\nSimulate data and setup analytical workflow (tables/graphs/models).\nNot useful for cleaning/tidying real data (~80% of work!).\nNeed good database schema/data dictionary"
+  },
+  {
+    "objectID": "index.html#links",
+    "href": "index.html#links",
+    "title": "No Data, No Worries : Fabricatr",
+    "section": "Links",
+    "text": "Links\n\nfabricatr\n\nGetting started with fabricatr\nBuilding and Importing Data\nCommon Social Science variables\nPanel and Cross-classified data\nTime series data with fabricatr\nTime series data with fabricatr\n\ngtsummary\n\n\n\n\nBackground Gigantic Jet Lightning NASA Astronomy Picture of the Day 2024-06-18\n\n\n\n\n\n\n\n \n\n\nQuarto RevealJS Template"
   }
 ]

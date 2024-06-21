@@ -418,7 +418,7 @@ Neil Shephard <a href="https://orcid.org/0000-0001-8301-6857" class="quarto-titl
 <h2>Scan This</h2>
 <div id="qr1" class="qrcode"></div>
 <script type="text/javascript">
-var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark":"#000000","text":"<https://ns-rse.github.io/sheffieldr-fabricatr-20240621>","width":"400"});
+var qrcode = new QRCode("qr1", {"text":"<https://ns-rse.github.io/sheffieldr-fabricatr-20240621>","height":"400","colorDark":"#000000","width":"400","colorLight":"#ffffff"});
 </script>
     
 <p><a href="https://ns-rse.github.io/sheffieldr-fabricatr-20240621" target="_blank">ns-rse.github.io/sheffieldr-fabricatr-20240621</a></p>
@@ -429,28 +429,13 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
 <div class="column" style="width:30%;">
 <ul>
 <li>Rarely work on my own data.</li>
-<li>Literate, reproducible workflow
+<li>Literate programming, reproducible workflow
 <ul>
 <li><a href="https://orgmode.org/worg/org-contrib/babel/" target="_blank">Org-Babel</a></li>
 <li><a href="https://bookdown.org/yihui/rmarkdown/" target="_blank">RMarkdown</a></li>
 <li><a href="https://quarto.org" target="_blank">Quarto</a>.</li>
 </ul></li>
 <li>Scripts to clean, summarise, plot and analyse data.</li>
-</ul>
-</div><div class="column" style="width:70%;">
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="https://the-turing-way.netlify.app/_images/reproducibility.jpg"></p>
-<figcaption>The Turing Way project illustration by Scriberia. Used under a CC-BY 4.0 licence. DOI: <a href="https://doi.org/10.5281/zenodo.3332807" target="_blank">10.5281/zenodo.3332807</a></figcaption>
-</figure>
-</div>
-</div>
-</div>
-<p>::: {.notes} Speaker Notes can be added to each slide. <strong>Formatting</strong> can be used here too. :: : ## Problem</p>
-<div class="columns">
-<div class="column" style="width:30%;">
-<ul>
-<li>Rarely is full data set available!</li>
 </ul>
 </div><div class="column" style="width:70%;">
 <div class="quarto-figure quarto-figure-center">
@@ -462,7 +447,36 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
 </div>
 </div>
 <aside class="notes">
-<p>Speaker Notes can be added to each slide. <strong>Formatting</strong> can be used here too.</p>
+<p>I’ve been a statistician, data scientist and more recently a Research Software Engineer for a number of years now and I rarely work on my own data. I collaborate with other researchers and either analyse their data for them or help guide them through the process of undertaking the anayyses themselves. My approach to doing this is to use a literate programming approach, a term introduced by computer scientist Donald Knuth, which has seend wide adoption in statistical and data science circles whereby text and code are inter-weaved into essentially scripts that can be re-run to clean, summarise plot and analys the data.</p>
+<p>But there is a common problem that I encounter</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="problem" class="slide level2">
+<h2>Problem</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p>Rarely is the final data set available!</p>
+<!-- ![The Turing Way project illustration by Scriberia. Used under a CC-BY 4.0 licence. DOI: -->
+<!-- [10.5281/zenodo.3332807](https://doi.org/10.5281/zenodo.3332807)](https://the-turing-way.netlify.app/_images/reproducibility.jpg) -->
+</div><div class="column" style="width:70%;">
+<p>“<em>To consult the statistician after an experiment is finished is often merely to ask him to conduct a post mortem examination. He can perhaps say what the experiment died of.</em>” - R.A. Fisher</p>
+<p><img data-src="https://www.infoamerica.org/teoria_imagenes/fisher2.jpg"></p>
+</div>
+</div>
+<aside class="notes">
+<p>Rarely is the full data set available, which can make it challenging to get started on developing the reproducible pipeline for analysing thet data.</p>
+<p>If I’m really lucky people will be in contact before they’ve started their research and we can collaborate on what data should be collected and avoid the post-mortem scenario RA Fisher refers to in this well known quote.</p>
+<p>Typically though that isn’t the case they have some data that is partially collected and they want to start interrogating it.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -484,6 +498,20 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
 <ul>
 <li>Simulate data!</li>
 </ul>
+<aside class="notes">
+<p>But all is not lost, if the structure of just a subset of the data is known, for example if there is a database schema or data dictionary for the researchers data then we can get started on developing our workflow by simulating some data and developing our scripts and literate programming workflow with the sample data.</p>
+<p>This doesn’t help with what is often the bulk of the work of any analysis which is cleaning and tidying the data but it gives us something to work with for the tables, graphs and statistical analyses we might want to undertake.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
 </div>
 </section>
 <section id="fabricatr" class="slide level2">
@@ -493,15 +521,18 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
 </ul>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"fabricatr"</span>, <span class="st">"tidyverse"</span>))</span>
-<span id="cb1-2"><a></a><span class="fu">library</span>(correlate)</span>
-<span id="cb1-3"><a></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb1-4"><a></a><span class="fu">library</span>(fabricatr)</span>
-<span id="cb1-5"><a></a><span class="fu">library</span>(tidyr)</span>
-<span id="cb1-6"><a></a><span class="fu">library</span>(visdat)</span>
-<span id="cb1-7"><a></a><span class="fu">library</span>(nanair)</span>
-<span id="cb1-8"><a></a></span>
-<span id="cb1-9"><a></a><span class="fu">set.seed</span>(<span class="dv">55138</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="co">#| label: setup</span></span>
+<span id="cb1-2"><a></a><span class="co">#| warning: false</span></span>
+<span id="cb1-3"><a></a><span class="co">#| eval: true</span></span>
+<span id="cb1-4"><a></a><span class="co">#| echo: true</span></span>
+<span id="cb1-5"><a></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"fabricatr"</span>, <span class="st">"tidyverse"</span>))</span>
+<span id="cb1-6"><a></a><span class="fu">library</span>(correlate)</span>
+<span id="cb1-7"><a></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-8"><a></a><span class="fu">library</span>(fabricatr)</span>
+<span id="cb1-9"><a></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-10"><a></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb1-11"><a></a></span>
+<span id="cb1-12"><a></a><span class="fu">set.seed</span>(<span class="dv">55138</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:50%;">
 <ul>
 <li>Binary variables</li>
@@ -514,7 +545,9 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
 </div>
 </div>
 <aside class="notes">
-<p>Speaker Notes can be added to each slide. <strong>Formatting</strong> can be used here too.</p>
+<p>The <a href="https://declaredesign.org/r/fabricatr/" target="_blank"><code>fabricatr</code></a> package is a relatively new package that makes it easy to simulate lots of different types of variables such as binary, categorical, continuous or count data and often with various different structures such as time-series, correlation between variables and even nested study designs with intra-class correlation.</p>
+<p>As the tag-line on the site reads you can <em>Imagine your data before you collect it!</em></p>
+<p>I’ve setup some basic examples to show how this package works and will run through some scenarios.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -555,19 +588,23 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
 <span id="cb2-13"><a></a>)</span>
 <span id="cb2-14"><a></a>dummy_df <span class="sc">|&gt;</span> <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   ID binary binomial    uniform random_normal
-1 001      1        1 0.03811388      13.00777
-2 002      0        0 0.43737164      65.07028
-3 003      0        2 0.79656311      40.77489
-4 004      1        2 0.09203046      37.34923
-5 005      0        0 0.41416496      55.10216
-6 006      1        0 0.27111614      35.80063</code></pre>
+<pre><code>   ID binary binomial     uniform random_normal
+1 001      0        2 0.241211455      14.98915
+2 002      0        2 0.002083675      28.97463
+3 003      0        2 0.102645113      59.94338
+4 004      1        2 0.124053932      39.85355
+5 005      1        0 0.863406008      45.04457
+6 006      1        0 0.655067994      59.41866</code></pre>
 </div>
 </div>
 </div>
 </div>
 <aside class="notes">
-<p><a href="https://www.r-project.org/" target="_blank">R</a> code can be embeded and executed to produce tables and figures.</p>
+<p>The main funciton is <code>fabricate()</code> which needs to know the number of observations you wish to simulate in the argument <code>N</code> and I’ve opted to keep the dataset small here and just have 100 observations.</p>
+<p>We create a <code>binary</code> variable using the <code>draw_binary()</code> function which takes the value N and we define the probability function we wish to use to draw samples from, in this case a uniform distribution using R’s base function <code>runif()</code>.</p>
+<p>We then create a <code>binomial</code> variable with two trials to give us what is essentially count data using the <code>draw_binomial()</code> function, which needs a probability distribution from which to make draws and again we use the uniform distribution but it needs to know the number of trials we wish to simulate and here we have specified <code>2</code> so the resulting values of <code>binomial</code> will be <code>0</code>, <code>1</code> or <code>2</code>.</p>
+<p>Next we create a <code>uniform</code> variable sampling directly from the base R function <code>runif()</code>.</p>
+<p>Finall we create a <code>random_normal</code> variable by sampling from a normal distribution with mean of 38 and a standard deviation of 16.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -586,23 +623,23 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
 <div class="column" style="width:50%;">
 <div class="cell">
 <div class="cell-output-display">
-<div id="jqvkkrirpq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#jqvkkrirpq table {
+<div id="nawmhtwouv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#nawmhtwouv table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#jqvkkrirpq thead, #jqvkkrirpq tbody, #jqvkkrirpq tfoot, #jqvkkrirpq tr, #jqvkkrirpq td, #jqvkkrirpq th {
+#nawmhtwouv thead, #nawmhtwouv tbody, #nawmhtwouv tfoot, #nawmhtwouv tr, #nawmhtwouv td, #nawmhtwouv th {
   border-style: none;
 }
 
-#jqvkkrirpq p {
+#nawmhtwouv p {
   margin: 0;
   padding: 0;
 }
 
-#jqvkkrirpq .gt_table {
+#nawmhtwouv .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -628,12 +665,12 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   border-left-color: #D3D3D3;
 }
 
-#jqvkkrirpq .gt_caption {
+#nawmhtwouv .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#jqvkkrirpq .gt_title {
+#nawmhtwouv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -645,7 +682,7 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   border-bottom-width: 0;
 }
 
-#jqvkkrirpq .gt_subtitle {
+#nawmhtwouv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -657,7 +694,7 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   border-top-width: 0;
 }
 
-#jqvkkrirpq .gt_heading {
+#nawmhtwouv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -669,13 +706,13 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   border-right-color: #D3D3D3;
 }
 
-#jqvkkrirpq .gt_bottom_border {
+#nawmhtwouv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jqvkkrirpq .gt_col_headings {
+#nawmhtwouv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -690,7 +727,7 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   border-right-color: #D3D3D3;
 }
 
-#jqvkkrirpq .gt_col_heading {
+#nawmhtwouv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -710,7 +747,7 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   overflow-x: hidden;
 }
 
-#jqvkkrirpq .gt_column_spanner_outer {
+#nawmhtwouv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -722,15 +759,15 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   padding-right: 4px;
 }
 
-#jqvkkrirpq .gt_column_spanner_outer:first-child {
+#nawmhtwouv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jqvkkrirpq .gt_column_spanner_outer:last-child {
+#nawmhtwouv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jqvkkrirpq .gt_column_spanner {
+#nawmhtwouv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -742,11 +779,11 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   width: 100%;
 }
 
-#jqvkkrirpq .gt_spanner_row {
+#nawmhtwouv .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#jqvkkrirpq .gt_group_heading {
+#nawmhtwouv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -772,7 +809,7 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   text-align: left;
 }
 
-#jqvkkrirpq .gt_empty_group_heading {
+#nawmhtwouv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -787,15 +824,15 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   vertical-align: middle;
 }
 
-#jqvkkrirpq .gt_from_md > :first-child {
+#nawmhtwouv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jqvkkrirpq .gt_from_md > :last-child {
+#nawmhtwouv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jqvkkrirpq .gt_row {
+#nawmhtwouv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -814,7 +851,7 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   overflow-x: hidden;
 }
 
-#jqvkkrirpq .gt_stub {
+#nawmhtwouv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -827,7 +864,7 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   padding-right: 5px;
 }
 
-#jqvkkrirpq .gt_stub_row_group {
+#nawmhtwouv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -841,15 +878,15 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   vertical-align: top;
 }
 
-#jqvkkrirpq .gt_row_group_first td {
+#nawmhtwouv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#jqvkkrirpq .gt_row_group_first th {
+#nawmhtwouv .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#jqvkkrirpq .gt_summary_row {
+#nawmhtwouv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -859,16 +896,16 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   padding-right: 5px;
 }
 
-#jqvkkrirpq .gt_first_summary_row {
+#nawmhtwouv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#jqvkkrirpq .gt_first_summary_row.thick {
+#nawmhtwouv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#jqvkkrirpq .gt_last_summary_row {
+#nawmhtwouv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -878,7 +915,7 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   border-bottom-color: #D3D3D3;
 }
 
-#jqvkkrirpq .gt_grand_summary_row {
+#nawmhtwouv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -888,7 +925,7 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   padding-right: 5px;
 }
 
-#jqvkkrirpq .gt_first_grand_summary_row {
+#nawmhtwouv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -898,7 +935,7 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   border-top-color: #D3D3D3;
 }
 
-#jqvkkrirpq .gt_last_grand_summary_row_top {
+#nawmhtwouv .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -908,11 +945,11 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   border-bottom-color: #D3D3D3;
 }
 
-#jqvkkrirpq .gt_striped {
+#nawmhtwouv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jqvkkrirpq .gt_table_body {
+#nawmhtwouv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -921,7 +958,7 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   border-bottom-color: #D3D3D3;
 }
 
-#jqvkkrirpq .gt_footnotes {
+#nawmhtwouv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -935,7 +972,7 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   border-right-color: #D3D3D3;
 }
 
-#jqvkkrirpq .gt_footnote {
+#nawmhtwouv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -944,7 +981,7 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   padding-right: 5px;
 }
 
-#jqvkkrirpq .gt_sourcenotes {
+#nawmhtwouv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -958,7 +995,7 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   border-right-color: #D3D3D3;
 }
 
-#jqvkkrirpq .gt_sourcenote {
+#nawmhtwouv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -966,63 +1003,63 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
   padding-right: 5px;
 }
 
-#jqvkkrirpq .gt_left {
+#nawmhtwouv .gt_left {
   text-align: left;
 }
 
-#jqvkkrirpq .gt_center {
+#nawmhtwouv .gt_center {
   text-align: center;
 }
 
-#jqvkkrirpq .gt_right {
+#nawmhtwouv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jqvkkrirpq .gt_font_normal {
+#nawmhtwouv .gt_font_normal {
   font-weight: normal;
 }
 
-#jqvkkrirpq .gt_font_bold {
+#nawmhtwouv .gt_font_bold {
   font-weight: bold;
 }
 
-#jqvkkrirpq .gt_font_italic {
+#nawmhtwouv .gt_font_italic {
   font-style: italic;
 }
 
-#jqvkkrirpq .gt_super {
+#nawmhtwouv .gt_super {
   font-size: 65%;
 }
 
-#jqvkkrirpq .gt_footnote_marks {
+#nawmhtwouv .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#jqvkkrirpq .gt_asterisk {
+#nawmhtwouv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#jqvkkrirpq .gt_indent_1 {
+#nawmhtwouv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#jqvkkrirpq .gt_indent_2 {
+#nawmhtwouv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#jqvkkrirpq .gt_indent_3 {
+#nawmhtwouv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#jqvkkrirpq .gt_indent_4 {
+#nawmhtwouv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#jqvkkrirpq .gt_indent_5 {
+#nawmhtwouv .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1041,7 +1078,7 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">binary</td>
-<td class="gt_row gt_center" headers="stat_0">42 (42%)</td>
+<td class="gt_row gt_center" headers="stat_0">41 (41%)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">binomial</td>
@@ -1050,23 +1087,23 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;0</td>
-<td class="gt_row gt_center" headers="stat_0">39 (39%)</td>
+<td class="gt_row gt_center" headers="stat_0">38 (38%)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;1</td>
-<td class="gt_row gt_center" headers="stat_0">31 (31%)</td>
+<td class="gt_row gt_center" headers="stat_0">30 (30%)</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;2</td>
-<td class="gt_row gt_center" headers="stat_0">30 (30%)</td>
+<td class="gt_row gt_center" headers="stat_0">32 (32%)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">uniform</td>
-<td class="gt_row gt_center" headers="stat_0">0.48 (0.25, 0.75)</td>
+<td class="gt_row gt_center" headers="stat_0">0.38 (0.16, 0.70)</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">random_normal</td>
-<td class="gt_row gt_center" headers="stat_0">39 (29, 49)</td>
+<td class="gt_row gt_center" headers="stat_0">38 (25, 49)</td>
 </tr>
 </tbody><tfoot class="gt_footnotes">
 <tr class="even">
@@ -1079,28 +1116,30 @@ var qrcode = new QRCode("qr1", {"height":"400","colorLight":"#ffffff","colorDark
 </div>
 </div>
 </div>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-fabricatr-basic-histogram" class="quarto-figure quarto-figure-center quarto-float" width="960">
+<figure class="quarto-float quarto-float-fig">
+<div aria-describedby="fig-fabricatr-basic-histogram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="index_files/figure-revealjs/fig-fabricatr-basic-histogram-1.png" id="fig-fabricatr-basic-histogram" width="960">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-fabricatr-basic-histogram-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 </div><div class="column" style="width:50%;">
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-fabricatr-basic-histogram-1" class="quarto-figure quarto-figure-center quarto-float">
+<div id="fig-fabricatr-basic-binomial-bar" class="quarto-figure quarto-figure-center quarto-float" width="960">
 <figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-fabricatr-basic-histogram-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="index_files/figure-revealjs/fig-fabricatr-basic-histogram-1.png" width="960">
+<div aria-describedby="fig-fabricatr-basic-binomial-bar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img data-src="index_files/figure-revealjs/fig-fabricatr-basic-binomial-bar-1.png" id="fig-fabricatr-basic-binomial-bar" width="960">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fabricatr-basic-histogram-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Random Normal variable.
-</figcaption>
-</figure>
-</div>
-</div>
-<div class="cell-output-display">
-<div id="fig-fabricatr-basic-histogram-2" class="quarto-figure quarto-figure-center quarto-float">
-<figure class="quarto-float quarto-float-fig">
-<div aria-describedby="fig-fabricatr-basic-histogram-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="index_files/figure-revealjs/fig-fabricatr-basic-histogram-2.png" width="960">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fabricatr-basic-histogram-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Random Normal variable.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-fabricatr-basic-binomial-bar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
 </figcaption>
 </figure>
 </div>
@@ -1108,13 +1147,13 @@ Figure&nbsp;2: Random Normal variable.
 </div>
 <div class="cell">
 <div class="cell-output-display">
-<div id="fig-fabricatr-basic-bar" class="quarto-figure quarto-figure-center quarto-float">
+<div id="fig-fabricatr-basic-bar" class="quarto-figure quarto-figure-center quarto-float" width="960">
 <figure class="quarto-float quarto-float-fig">
 <div aria-describedby="fig-fabricatr-basic-bar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img data-src="index_files/figure-revealjs/fig-fabricatr-basic-bar-1.png" width="960">
+<img data-src="index_files/figure-revealjs/fig-fabricatr-basic-bar-1.png" id="fig-fabricatr-basic-bar" width="960">
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fabricatr-basic-bar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Binary variable.
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-fabricatr-basic-bar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3
 </figcaption>
 </figure>
 </div>
@@ -1159,7 +1198,7 @@ Figure&nbsp;3: Binary variable.
 </div>
 </div>
 <aside class="notes">
-<p><a href="https://www.r-project.org/" target="_blank">R</a> code can be embeded and executed to produce tables and figures.</p>
+<p>Fabricatr also supports generating ordered categorical variables as you might get from surveys and we can generate these using the <code>draw_ordered()</code> function. First we generate a random normal variable <code>x</code> using <code>rnorm()</code> for our sample size <code>N</code> of 100 and this is passed to the <code>draw_ordered()</code> function where we specify a series of break points and labels for each of the categories that have been formed.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1178,23 +1217,23 @@ Figure&nbsp;3: Binary variable.
 <div class="column" style="width:50%;">
 <div class="cell">
 <div class="cell-output-display">
-<div id="eqhbaswade" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#eqhbaswade table {
+<div id="hmdqsyfprn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#hmdqsyfprn table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#eqhbaswade thead, #eqhbaswade tbody, #eqhbaswade tfoot, #eqhbaswade tr, #eqhbaswade td, #eqhbaswade th {
+#hmdqsyfprn thead, #hmdqsyfprn tbody, #hmdqsyfprn tfoot, #hmdqsyfprn tr, #hmdqsyfprn td, #hmdqsyfprn th {
   border-style: none;
 }
 
-#eqhbaswade p {
+#hmdqsyfprn p {
   margin: 0;
   padding: 0;
 }
 
-#eqhbaswade .gt_table {
+#hmdqsyfprn .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1220,12 +1259,12 @@ Figure&nbsp;3: Binary variable.
   border-left-color: #D3D3D3;
 }
 
-#eqhbaswade .gt_caption {
+#hmdqsyfprn .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#eqhbaswade .gt_title {
+#hmdqsyfprn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1237,7 +1276,7 @@ Figure&nbsp;3: Binary variable.
   border-bottom-width: 0;
 }
 
-#eqhbaswade .gt_subtitle {
+#hmdqsyfprn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1249,7 +1288,7 @@ Figure&nbsp;3: Binary variable.
   border-top-width: 0;
 }
 
-#eqhbaswade .gt_heading {
+#hmdqsyfprn .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1261,13 +1300,13 @@ Figure&nbsp;3: Binary variable.
   border-right-color: #D3D3D3;
 }
 
-#eqhbaswade .gt_bottom_border {
+#hmdqsyfprn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#eqhbaswade .gt_col_headings {
+#hmdqsyfprn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1282,7 +1321,7 @@ Figure&nbsp;3: Binary variable.
   border-right-color: #D3D3D3;
 }
 
-#eqhbaswade .gt_col_heading {
+#hmdqsyfprn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1302,7 +1341,7 @@ Figure&nbsp;3: Binary variable.
   overflow-x: hidden;
 }
 
-#eqhbaswade .gt_column_spanner_outer {
+#hmdqsyfprn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1314,15 +1353,15 @@ Figure&nbsp;3: Binary variable.
   padding-right: 4px;
 }
 
-#eqhbaswade .gt_column_spanner_outer:first-child {
+#hmdqsyfprn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#eqhbaswade .gt_column_spanner_outer:last-child {
+#hmdqsyfprn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#eqhbaswade .gt_column_spanner {
+#hmdqsyfprn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1334,11 +1373,11 @@ Figure&nbsp;3: Binary variable.
   width: 100%;
 }
 
-#eqhbaswade .gt_spanner_row {
+#hmdqsyfprn .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#eqhbaswade .gt_group_heading {
+#hmdqsyfprn .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1364,7 +1403,7 @@ Figure&nbsp;3: Binary variable.
   text-align: left;
 }
 
-#eqhbaswade .gt_empty_group_heading {
+#hmdqsyfprn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1379,15 +1418,15 @@ Figure&nbsp;3: Binary variable.
   vertical-align: middle;
 }
 
-#eqhbaswade .gt_from_md > :first-child {
+#hmdqsyfprn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#eqhbaswade .gt_from_md > :last-child {
+#hmdqsyfprn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#eqhbaswade .gt_row {
+#hmdqsyfprn .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1406,7 +1445,7 @@ Figure&nbsp;3: Binary variable.
   overflow-x: hidden;
 }
 
-#eqhbaswade .gt_stub {
+#hmdqsyfprn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1419,7 +1458,7 @@ Figure&nbsp;3: Binary variable.
   padding-right: 5px;
 }
 
-#eqhbaswade .gt_stub_row_group {
+#hmdqsyfprn .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1433,15 +1472,15 @@ Figure&nbsp;3: Binary variable.
   vertical-align: top;
 }
 
-#eqhbaswade .gt_row_group_first td {
+#hmdqsyfprn .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#eqhbaswade .gt_row_group_first th {
+#hmdqsyfprn .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#eqhbaswade .gt_summary_row {
+#hmdqsyfprn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1451,16 +1490,16 @@ Figure&nbsp;3: Binary variable.
   padding-right: 5px;
 }
 
-#eqhbaswade .gt_first_summary_row {
+#hmdqsyfprn .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#eqhbaswade .gt_first_summary_row.thick {
+#hmdqsyfprn .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#eqhbaswade .gt_last_summary_row {
+#hmdqsyfprn .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1470,7 +1509,7 @@ Figure&nbsp;3: Binary variable.
   border-bottom-color: #D3D3D3;
 }
 
-#eqhbaswade .gt_grand_summary_row {
+#hmdqsyfprn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1480,7 +1519,7 @@ Figure&nbsp;3: Binary variable.
   padding-right: 5px;
 }
 
-#eqhbaswade .gt_first_grand_summary_row {
+#hmdqsyfprn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1490,7 +1529,7 @@ Figure&nbsp;3: Binary variable.
   border-top-color: #D3D3D3;
 }
 
-#eqhbaswade .gt_last_grand_summary_row_top {
+#hmdqsyfprn .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1500,11 +1539,11 @@ Figure&nbsp;3: Binary variable.
   border-bottom-color: #D3D3D3;
 }
 
-#eqhbaswade .gt_striped {
+#hmdqsyfprn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#eqhbaswade .gt_table_body {
+#hmdqsyfprn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1513,7 +1552,7 @@ Figure&nbsp;3: Binary variable.
   border-bottom-color: #D3D3D3;
 }
 
-#eqhbaswade .gt_footnotes {
+#hmdqsyfprn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1527,7 +1566,7 @@ Figure&nbsp;3: Binary variable.
   border-right-color: #D3D3D3;
 }
 
-#eqhbaswade .gt_footnote {
+#hmdqsyfprn .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1536,7 +1575,7 @@ Figure&nbsp;3: Binary variable.
   padding-right: 5px;
 }
 
-#eqhbaswade .gt_sourcenotes {
+#hmdqsyfprn .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1550,7 +1589,7 @@ Figure&nbsp;3: Binary variable.
   border-right-color: #D3D3D3;
 }
 
-#eqhbaswade .gt_sourcenote {
+#hmdqsyfprn .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1558,63 +1597,63 @@ Figure&nbsp;3: Binary variable.
   padding-right: 5px;
 }
 
-#eqhbaswade .gt_left {
+#hmdqsyfprn .gt_left {
   text-align: left;
 }
 
-#eqhbaswade .gt_center {
+#hmdqsyfprn .gt_center {
   text-align: center;
 }
 
-#eqhbaswade .gt_right {
+#hmdqsyfprn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#eqhbaswade .gt_font_normal {
+#hmdqsyfprn .gt_font_normal {
   font-weight: normal;
 }
 
-#eqhbaswade .gt_font_bold {
+#hmdqsyfprn .gt_font_bold {
   font-weight: bold;
 }
 
-#eqhbaswade .gt_font_italic {
+#hmdqsyfprn .gt_font_italic {
   font-style: italic;
 }
 
-#eqhbaswade .gt_super {
+#hmdqsyfprn .gt_super {
   font-size: 65%;
 }
 
-#eqhbaswade .gt_footnote_marks {
+#hmdqsyfprn .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#eqhbaswade .gt_asterisk {
+#hmdqsyfprn .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#eqhbaswade .gt_indent_1 {
+#hmdqsyfprn .gt_indent_1 {
   text-indent: 5px;
 }
 
-#eqhbaswade .gt_indent_2 {
+#hmdqsyfprn .gt_indent_2 {
   text-indent: 10px;
 }
 
-#eqhbaswade .gt_indent_3 {
+#hmdqsyfprn .gt_indent_3 {
   text-indent: 15px;
 }
 
-#eqhbaswade .gt_indent_4 {
+#hmdqsyfprn .gt_indent_4 {
   text-indent: 20px;
 }
 
-#eqhbaswade .gt_indent_5 {
+#hmdqsyfprn .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1638,27 +1677,27 @@ Figure&nbsp;3: Binary variable.
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Group 1</td>
-<td class="gt_row gt_center" headers="stat_0">21 (21%)</td>
+<td class="gt_row gt_center" headers="stat_0">14 (14%)</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Group 2</td>
-<td class="gt_row gt_center" headers="stat_0">11 (11%)</td>
+<td class="gt_row gt_center" headers="stat_0">13 (13%)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Group 3</td>
-<td class="gt_row gt_center" headers="stat_0">16 (16%)</td>
+<td class="gt_row gt_center" headers="stat_0">19 (19%)</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Group 4</td>
-<td class="gt_row gt_center" headers="stat_0">27 (27%)</td>
+<td class="gt_row gt_center" headers="stat_0">22 (22%)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Group 5</td>
-<td class="gt_row gt_center" headers="stat_0">11 (11%)</td>
+<td class="gt_row gt_center" headers="stat_0">13 (13%)</td>
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;Group 6</td>
-<td class="gt_row gt_center" headers="stat_0">14 (14%)</td>
+<td class="gt_row gt_center" headers="stat_0">19 (19%)</td>
 </tr>
 </tbody><tfoot class="gt_footnotes">
 <tr class="even">
@@ -1690,7 +1729,7 @@ Figure&nbsp;4
 </div>
 </div>
 <aside class="notes">
-<p>[R](https://www.r-project.org/** code can be embeded and executed to produce tables and figures.</p>
+<p>We can tabulate this data using the excellent <a href="https://www.danieldsjoberg.com/gtsummary/" target="_blank"><code>gtsummary</code></a> package and also plot the data to see how many there are in each category.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1710,9 +1749,9 @@ Figure&nbsp;4
 <div class="column" style="width:50%;">
 <ul>
 <li>100 observations</li>
-<li>Random Normal <code>y</code> (mean = 38, sd = 16) : using <a href="https://rdrr.io/r/stats/Normal.html" target="_blank"><code>rnorm()</code></a></li>
-<li>Random normal <code>a</code> (mean = 78, sd = 14) : <a href="https://rdrr.io/r/stats/Normal.html" target="_blank"><code>rnorm()</code></a> rank correlation with <code>y</code> of <code>0.8</code> using <a href="https://declaredesign.org/r/fabricatr/reference/correlate.html" target="_blank"><code>correlate</code></a></li>
-<li>Random normal <code>b</code> (mean = 46, sd = 18) : <a href="https://rdrr.io/r/stats/Normal.html" target="_blank"><code>rnorm()</code></a> rank correlation with <code>y</code> of <code>-0.4</code> using <a href="https://declaredesign.org/r/fabricatr/reference/correlate.html" target="_blank"><code>correlate</code></a></li>
+<li><code>y</code> (mean = 38, sd = 16) : using <a href="https://rdrr.io/r/stats/Normal.html" target="_blank"><code>rnorm()</code></a></li>
+<li><code>a</code> (mean = 78, sd = 14) : <a href="https://rdrr.io/r/stats/Normal.html" target="_blank"><code>rnorm()</code></a> rank correlation with <code>y</code> of <code>0.8</code> using <a href="https://declaredesign.org/r/fabricatr/reference/correlate.html" target="_blank"><code>correlate</code></a></li>
+<li><code>b</code> (mean = 46, sd = 18) : <a href="https://rdrr.io/r/stats/Normal.html" target="_blank"><code>rnorm()</code></a> rank correlation with <code>y</code> of <code>-0.4</code> using <a href="https://declaredesign.org/r/fabricatr/reference/correlate.html" target="_blank"><code>correlate</code></a></li>
 </ul>
 </div><div class="column" style="width:50%;">
 <div class="cell">
@@ -1729,13 +1768,13 @@ Figure&nbsp;4
 <span id="cb5-11"><a></a>                             rnorm,</span>
 <span id="cb5-12"><a></a>                             <span class="at">mean =</span> <span class="dv">46</span>,</span>
 <span id="cb5-13"><a></a>                             <span class="at">sd =</span> <span class="dv">18</span>)</span>
-<span id="cb5-14"><a></a></span>
-<span id="cb5-15"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-14"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 <aside class="notes">
-<p><a href="https://www.r-project.org/" target="_blank">R</a> code can be embeded and executed to produce tables and figures.</p>
+<p>It is also possible to generate correlated variables here we again use a sample size of 100 and simulate <code>y</code> from a random normal distribution with a mean of 64 and a standard deviation of 11.</p>
+<p>We then use the <code>correlate()</code> function to simulate <code>a</code> and <code>b</code> which are conditional on <code>y</code>. A has a rank correlation coefficient of 0.8 and samples from a normal distribution with a mean of 78 and standard deviation of 14, whilst <code>b</code> has a negative correlation with <code>y</code> of -0.4 and is a continuous variable drawn from a normal distribution with mean of 46 and standard dewviation of 18. And obviously <code>b</code> will be negatively correlated with <code>a</code>, albeit with a lower correlation.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -1748,29 +1787,75 @@ Figure&nbsp;4
           display:block!important;
       }</style></aside>
 </section>
-<section id="correlated-continuous-variables---summary" class="slide level2">
+<section id="correlated-continuous-variables---summary" class="slide level2 scrollable">
+<h2>Correlated Continuous Variables - Summary</h2>
+<!-- **y ~ a** -->
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/fabricatr-correlated-continuous-scatter-y-a-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<!-- **y ~ b** -->
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/fabricatr-correlated-continuous-scatter-y-b-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<!-- **b ~ a** -->
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/fabricatr-correlated-continuous-scatter-b-a-1.png" width="960"></p>
+</figure>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>Here I’ve made some simple scatter plots of the continuous variables to show how the correlation relates. Note that it is not perfect because of the randomness involved in sample…</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="correlated-continuous-variables---summary-1" class="slide level2">
 <h2>Correlated Continuous Variables - Summary</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
 <div class="cell">
 <div class="cell-output-display">
-<div id="yyjkxuwwdy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#yyjkxuwwdy table {
+<div id="avmgjjtgnx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#avmgjjtgnx table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#yyjkxuwwdy thead, #yyjkxuwwdy tbody, #yyjkxuwwdy tfoot, #yyjkxuwwdy tr, #yyjkxuwwdy td, #yyjkxuwwdy th {
+#avmgjjtgnx thead, #avmgjjtgnx tbody, #avmgjjtgnx tfoot, #avmgjjtgnx tr, #avmgjjtgnx td, #avmgjjtgnx th {
   border-style: none;
 }
 
-#yyjkxuwwdy p {
+#avmgjjtgnx p {
   margin: 0;
   padding: 0;
 }
 
-#yyjkxuwwdy .gt_table {
+#avmgjjtgnx .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1796,12 +1881,12 @@ Figure&nbsp;4
   border-left-color: #D3D3D3;
 }
 
-#yyjkxuwwdy .gt_caption {
+#avmgjjtgnx .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#yyjkxuwwdy .gt_title {
+#avmgjjtgnx .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1813,7 +1898,7 @@ Figure&nbsp;4
   border-bottom-width: 0;
 }
 
-#yyjkxuwwdy .gt_subtitle {
+#avmgjjtgnx .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1825,7 +1910,7 @@ Figure&nbsp;4
   border-top-width: 0;
 }
 
-#yyjkxuwwdy .gt_heading {
+#avmgjjtgnx .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1837,13 +1922,13 @@ Figure&nbsp;4
   border-right-color: #D3D3D3;
 }
 
-#yyjkxuwwdy .gt_bottom_border {
+#avmgjjtgnx .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#yyjkxuwwdy .gt_col_headings {
+#avmgjjtgnx .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1858,7 +1943,7 @@ Figure&nbsp;4
   border-right-color: #D3D3D3;
 }
 
-#yyjkxuwwdy .gt_col_heading {
+#avmgjjtgnx .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1878,7 +1963,7 @@ Figure&nbsp;4
   overflow-x: hidden;
 }
 
-#yyjkxuwwdy .gt_column_spanner_outer {
+#avmgjjtgnx .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1890,15 +1975,15 @@ Figure&nbsp;4
   padding-right: 4px;
 }
 
-#yyjkxuwwdy .gt_column_spanner_outer:first-child {
+#avmgjjtgnx .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#yyjkxuwwdy .gt_column_spanner_outer:last-child {
+#avmgjjtgnx .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#yyjkxuwwdy .gt_column_spanner {
+#avmgjjtgnx .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1910,11 +1995,11 @@ Figure&nbsp;4
   width: 100%;
 }
 
-#yyjkxuwwdy .gt_spanner_row {
+#avmgjjtgnx .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#yyjkxuwwdy .gt_group_heading {
+#avmgjjtgnx .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1940,7 +2025,7 @@ Figure&nbsp;4
   text-align: left;
 }
 
-#yyjkxuwwdy .gt_empty_group_heading {
+#avmgjjtgnx .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1955,15 +2040,15 @@ Figure&nbsp;4
   vertical-align: middle;
 }
 
-#yyjkxuwwdy .gt_from_md > :first-child {
+#avmgjjtgnx .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#yyjkxuwwdy .gt_from_md > :last-child {
+#avmgjjtgnx .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#yyjkxuwwdy .gt_row {
+#avmgjjtgnx .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1982,7 +2067,7 @@ Figure&nbsp;4
   overflow-x: hidden;
 }
 
-#yyjkxuwwdy .gt_stub {
+#avmgjjtgnx .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1995,7 +2080,7 @@ Figure&nbsp;4
   padding-right: 5px;
 }
 
-#yyjkxuwwdy .gt_stub_row_group {
+#avmgjjtgnx .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2009,15 +2094,15 @@ Figure&nbsp;4
   vertical-align: top;
 }
 
-#yyjkxuwwdy .gt_row_group_first td {
+#avmgjjtgnx .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#yyjkxuwwdy .gt_row_group_first th {
+#avmgjjtgnx .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#yyjkxuwwdy .gt_summary_row {
+#avmgjjtgnx .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2027,16 +2112,16 @@ Figure&nbsp;4
   padding-right: 5px;
 }
 
-#yyjkxuwwdy .gt_first_summary_row {
+#avmgjjtgnx .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#yyjkxuwwdy .gt_first_summary_row.thick {
+#avmgjjtgnx .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#yyjkxuwwdy .gt_last_summary_row {
+#avmgjjtgnx .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2046,7 +2131,7 @@ Figure&nbsp;4
   border-bottom-color: #D3D3D3;
 }
 
-#yyjkxuwwdy .gt_grand_summary_row {
+#avmgjjtgnx .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2056,7 +2141,7 @@ Figure&nbsp;4
   padding-right: 5px;
 }
 
-#yyjkxuwwdy .gt_first_grand_summary_row {
+#avmgjjtgnx .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2066,7 +2151,7 @@ Figure&nbsp;4
   border-top-color: #D3D3D3;
 }
 
-#yyjkxuwwdy .gt_last_grand_summary_row_top {
+#avmgjjtgnx .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2076,11 +2161,11 @@ Figure&nbsp;4
   border-bottom-color: #D3D3D3;
 }
 
-#yyjkxuwwdy .gt_striped {
+#avmgjjtgnx .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#yyjkxuwwdy .gt_table_body {
+#avmgjjtgnx .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2089,7 +2174,7 @@ Figure&nbsp;4
   border-bottom-color: #D3D3D3;
 }
 
-#yyjkxuwwdy .gt_footnotes {
+#avmgjjtgnx .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2103,7 +2188,7 @@ Figure&nbsp;4
   border-right-color: #D3D3D3;
 }
 
-#yyjkxuwwdy .gt_footnote {
+#avmgjjtgnx .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2112,7 +2197,7 @@ Figure&nbsp;4
   padding-right: 5px;
 }
 
-#yyjkxuwwdy .gt_sourcenotes {
+#avmgjjtgnx .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2126,7 +2211,7 @@ Figure&nbsp;4
   border-right-color: #D3D3D3;
 }
 
-#yyjkxuwwdy .gt_sourcenote {
+#avmgjjtgnx .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2134,63 +2219,63 @@ Figure&nbsp;4
   padding-right: 5px;
 }
 
-#yyjkxuwwdy .gt_left {
+#avmgjjtgnx .gt_left {
   text-align: left;
 }
 
-#yyjkxuwwdy .gt_center {
+#avmgjjtgnx .gt_center {
   text-align: center;
 }
 
-#yyjkxuwwdy .gt_right {
+#avmgjjtgnx .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#yyjkxuwwdy .gt_font_normal {
+#avmgjjtgnx .gt_font_normal {
   font-weight: normal;
 }
 
-#yyjkxuwwdy .gt_font_bold {
+#avmgjjtgnx .gt_font_bold {
   font-weight: bold;
 }
 
-#yyjkxuwwdy .gt_font_italic {
+#avmgjjtgnx .gt_font_italic {
   font-style: italic;
 }
 
-#yyjkxuwwdy .gt_super {
+#avmgjjtgnx .gt_super {
   font-size: 65%;
 }
 
-#yyjkxuwwdy .gt_footnote_marks {
+#avmgjjtgnx .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#yyjkxuwwdy .gt_asterisk {
+#avmgjjtgnx .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#yyjkxuwwdy .gt_indent_1 {
+#avmgjjtgnx .gt_indent_1 {
   text-indent: 5px;
 }
 
-#yyjkxuwwdy .gt_indent_2 {
+#avmgjjtgnx .gt_indent_2 {
   text-indent: 10px;
 }
 
-#yyjkxuwwdy .gt_indent_3 {
+#avmgjjtgnx .gt_indent_3 {
   text-indent: 15px;
 }
 
-#yyjkxuwwdy .gt_indent_4 {
+#avmgjjtgnx .gt_indent_4 {
   text-indent: 20px;
 }
 
-#yyjkxuwwdy .gt_indent_5 {
+#avmgjjtgnx .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2205,7 +2290,7 @@ Figure&nbsp;4
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">y</td>
-<td class="gt_row gt_center" headers="stat_0">63 (57, 70)</td>
+<td class="gt_row gt_center" headers="stat_0">64 (57, 70)</td>
 </tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">a</td>
@@ -2213,7 +2298,7 @@ Figure&nbsp;4
 </tr>
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">b</td>
-<td class="gt_row gt_center" headers="stat_0">44 (34, 59)</td>
+<td class="gt_row gt_center" headers="stat_0">47 (38, 59)</td>
 </tr>
 </tbody><tfoot class="gt_footnotes">
 <tr class="even">
@@ -2239,7 +2324,7 @@ Figure&nbsp;4
 </div>
 </div>
 <aside class="notes">
-<p><a href="https://www.r-project.org/" target="_blank">R</a> code can be embeded and executed to produce tables and figures.</p>
+<p>…but as we can see from the correlation coefficients… between the variables is roughly what we specified.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -2252,38 +2337,40 @@ Figure&nbsp;4
           display:block!important;
       }</style></aside>
 </section>
-<section id="correlated-discrete-variables" class="slide level2">
+<section id="correlated-discrete-variables" class="slide level2 scrollable">
 <h2>Correlated Discrete Variables</h2>
 <p><strong>EXPERIMENTAL</strong></p>
 <div class="columns">
 <div class="column" style="width:50%;">
 <ul>
 <li>100 observations</li>
-<li>Binomial <code>q1</code> (prob = 0.38, trials = 10) : using [<code>draw_binomial()</code>][draw_discrete]</li>
-<li>Binomial <code>q1</code> (prob = 0.63, trials = 5) : [<code>draw_binomial()</code>][draw_discrete] rank correlation with <code>q1</code> of <code>0.74</code> using <a href="https://declaredesign.org/r/fabricatr/reference/correlate.html" target="_blank"><code>correlate</code></a></li>
-<li>Binomial <code>q3</code> (prob = 0.79, trials = 5) : [<code>draw_binomial()</code>][draw_discrete] rank correlation with <code>q2</code> of <code>-0.89</code> using <a href="https://declaredesign.org/r/fabricatr/reference/correlate.html" target="_blank"><code>correlate</code></a></li>
+<li>Binomial <code>q1</code> (prob = 0.38, trials = 10) : using <a href="https://declaredesign.org/r/fabricatr/reference/draw_discrete.html" target="_blank"><code>draw_binomial()</code></a></li>
+<li>Binomial <code>q1</code> (prob = 0.63, trials = 5) : <a href="https://declaredesign.org/r/fabricatr/reference/draw_discrete.html" target="_blank"><code>draw_binomial()</code></a> rank correlation with <code>q1</code> of <code>0.74</code> using <a href="https://declaredesign.org/r/fabricatr/reference/correlate.html" target="_blank"><code>correlate</code></a></li>
+<li>Binomial <code>q3</code> (prob = 0.79, trials = 5) : <a href="https://declaredesign.org/r/fabricatr/reference/draw_discrete.html" target="_blank"><code>draw_binomial()</code></a> rank correlation with <code>q2</code> of <code>-0.89</code> using <a href="https://declaredesign.org/r/fabricatr/reference/correlate.html" target="_blank"><code>correlate</code></a></li>
 </ul>
 </div><div class="column" style="width:50%;">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>corr_discrete_df <span class="ot">&lt;-</span> fabricatr<span class="sc">::</span><span class="fu">fabricate</span>(</span>
 <span id="cb6-2"><a></a>    <span class="at">N =</span> <span class="dv">100</span>,</span>
-<span id="cb6-3"><a></a>    <span class="at">q1 =</span> fabricatr<span class="sc">::</span><span class="fu">draw_binomial</span>(<span class="at">prob =</span> <span class="fl">0.38</span>, <span class="at">trials =</span> <span class="dv">10</span>, <span class="at">N =</span> N),</span>
-<span id="cb6-4"><a></a>    <span class="at">q2 =</span> fabricatr<span class="sc">::</span><span class="fu">correlate</span>(<span class="at">given =</span> q1,</span>
-<span id="cb6-5"><a></a>                             <span class="at">rho =</span> <span class="fl">0.74</span>,</span>
-<span id="cb6-6"><a></a>                             fabricatr<span class="sc">::</span>draw_binomial,</span>
-<span id="cb6-7"><a></a>                             <span class="at">prob =</span> <span class="fl">0.63</span>,</span>
-<span id="cb6-8"><a></a>                             <span class="at">trials =</span> <span class="dv">10</span>),</span>
-<span id="cb6-9"><a></a>    <span class="at">q3 =</span> fabricatr<span class="sc">::</span><span class="fu">correlate</span>(<span class="at">given =</span> q2,</span>
-<span id="cb6-10"><a></a>                             <span class="at">rho =</span> <span class="sc">-</span><span class="fl">0.89</span>,</span>
-<span id="cb6-11"><a></a>                             fabricatr<span class="sc">::</span>draw_binomial,</span>
-<span id="cb6-12"><a></a>                             <span class="at">prob =</span> <span class="fl">0.79</span>,</span>
-<span id="cb6-13"><a></a>                             <span class="at">trials =</span> <span class="dv">10</span>)</span>
-<span id="cb6-14"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-3"><a></a>    <span class="at">q1 =</span> fabricatr<span class="sc">::</span><span class="fu">draw_binomial</span>(<span class="at">prob =</span> <span class="fl">0.38</span>,</span>
+<span id="cb6-4"><a></a>                                  <span class="at">trials =</span> <span class="dv">10</span>,</span>
+<span id="cb6-5"><a></a>                                  <span class="at">N =</span> N),</span>
+<span id="cb6-6"><a></a>    <span class="at">q2 =</span> fabricatr<span class="sc">::</span><span class="fu">correlate</span>(<span class="at">given =</span> q1,</span>
+<span id="cb6-7"><a></a>                             <span class="at">rho =</span> <span class="fl">0.74</span>,</span>
+<span id="cb6-8"><a></a>                             fabricatr<span class="sc">::</span>draw_binomial,</span>
+<span id="cb6-9"><a></a>                             <span class="at">prob =</span> <span class="fl">0.63</span>,</span>
+<span id="cb6-10"><a></a>                             <span class="at">trials =</span> <span class="dv">10</span>),</span>
+<span id="cb6-11"><a></a>    <span class="at">q3 =</span> fabricatr<span class="sc">::</span><span class="fu">correlate</span>(<span class="at">given =</span> q2,</span>
+<span id="cb6-12"><a></a>                             <span class="at">rho =</span> <span class="sc">-</span><span class="fl">0.89</span>,</span>
+<span id="cb6-13"><a></a>                             fabricatr<span class="sc">::</span>draw_binomial,</span>
+<span id="cb6-14"><a></a>                             <span class="at">prob =</span> <span class="fl">0.79</span>,</span>
+<span id="cb6-15"><a></a>                             <span class="at">trials =</span> <span class="dv">10</span>)</span>
+<span id="cb6-16"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
 <aside class="notes">
-<p><a href="https://www.r-project.org/" target="_blank">R</a> code can be embeded and executed to produce tables and figures.</p>
+<p>In a similar vein we can correlate the discrete variables and here we draw count data using <code>draw_binomial</code> and specify a positive correlation of <code>0.74</code> between <code>q1</code> and <code>q2</code> and a negativecorrelation of <code>-0.89</code> bbetween <code>q2</code> and <code>q3</code>.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -2302,23 +2389,23 @@ Figure&nbsp;4
 <div class="column" style="width:50%;">
 <div class="cell">
 <div class="cell-output-display">
-<div id="aziapgpbzx" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#aziapgpbzx table {
+<div id="ofocdgkraf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ofocdgkraf table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#aziapgpbzx thead, #aziapgpbzx tbody, #aziapgpbzx tfoot, #aziapgpbzx tr, #aziapgpbzx td, #aziapgpbzx th {
+#ofocdgkraf thead, #ofocdgkraf tbody, #ofocdgkraf tfoot, #ofocdgkraf tr, #ofocdgkraf td, #ofocdgkraf th {
   border-style: none;
 }
 
-#aziapgpbzx p {
+#ofocdgkraf p {
   margin: 0;
   padding: 0;
 }
 
-#aziapgpbzx .gt_table {
+#ofocdgkraf .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -2344,12 +2431,12 @@ Figure&nbsp;4
   border-left-color: #D3D3D3;
 }
 
-#aziapgpbzx .gt_caption {
+#ofocdgkraf .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#aziapgpbzx .gt_title {
+#ofocdgkraf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2361,7 +2448,7 @@ Figure&nbsp;4
   border-bottom-width: 0;
 }
 
-#aziapgpbzx .gt_subtitle {
+#ofocdgkraf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2373,7 +2460,7 @@ Figure&nbsp;4
   border-top-width: 0;
 }
 
-#aziapgpbzx .gt_heading {
+#ofocdgkraf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2385,13 +2472,13 @@ Figure&nbsp;4
   border-right-color: #D3D3D3;
 }
 
-#aziapgpbzx .gt_bottom_border {
+#ofocdgkraf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#aziapgpbzx .gt_col_headings {
+#ofocdgkraf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2406,7 +2493,7 @@ Figure&nbsp;4
   border-right-color: #D3D3D3;
 }
 
-#aziapgpbzx .gt_col_heading {
+#ofocdgkraf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2426,7 +2513,7 @@ Figure&nbsp;4
   overflow-x: hidden;
 }
 
-#aziapgpbzx .gt_column_spanner_outer {
+#ofocdgkraf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2438,15 +2525,15 @@ Figure&nbsp;4
   padding-right: 4px;
 }
 
-#aziapgpbzx .gt_column_spanner_outer:first-child {
+#ofocdgkraf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#aziapgpbzx .gt_column_spanner_outer:last-child {
+#ofocdgkraf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#aziapgpbzx .gt_column_spanner {
+#ofocdgkraf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2458,11 +2545,11 @@ Figure&nbsp;4
   width: 100%;
 }
 
-#aziapgpbzx .gt_spanner_row {
+#ofocdgkraf .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#aziapgpbzx .gt_group_heading {
+#ofocdgkraf .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2488,7 +2575,7 @@ Figure&nbsp;4
   text-align: left;
 }
 
-#aziapgpbzx .gt_empty_group_heading {
+#ofocdgkraf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2503,15 +2590,15 @@ Figure&nbsp;4
   vertical-align: middle;
 }
 
-#aziapgpbzx .gt_from_md > :first-child {
+#ofocdgkraf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#aziapgpbzx .gt_from_md > :last-child {
+#ofocdgkraf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#aziapgpbzx .gt_row {
+#ofocdgkraf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2530,7 +2617,7 @@ Figure&nbsp;4
   overflow-x: hidden;
 }
 
-#aziapgpbzx .gt_stub {
+#ofocdgkraf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2543,7 +2630,7 @@ Figure&nbsp;4
   padding-right: 5px;
 }
 
-#aziapgpbzx .gt_stub_row_group {
+#ofocdgkraf .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2557,15 +2644,15 @@ Figure&nbsp;4
   vertical-align: top;
 }
 
-#aziapgpbzx .gt_row_group_first td {
+#ofocdgkraf .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#aziapgpbzx .gt_row_group_first th {
+#ofocdgkraf .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#aziapgpbzx .gt_summary_row {
+#ofocdgkraf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2575,16 +2662,16 @@ Figure&nbsp;4
   padding-right: 5px;
 }
 
-#aziapgpbzx .gt_first_summary_row {
+#ofocdgkraf .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#aziapgpbzx .gt_first_summary_row.thick {
+#ofocdgkraf .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#aziapgpbzx .gt_last_summary_row {
+#ofocdgkraf .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2594,7 +2681,7 @@ Figure&nbsp;4
   border-bottom-color: #D3D3D3;
 }
 
-#aziapgpbzx .gt_grand_summary_row {
+#ofocdgkraf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2604,7 +2691,7 @@ Figure&nbsp;4
   padding-right: 5px;
 }
 
-#aziapgpbzx .gt_first_grand_summary_row {
+#ofocdgkraf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2614,7 +2701,7 @@ Figure&nbsp;4
   border-top-color: #D3D3D3;
 }
 
-#aziapgpbzx .gt_last_grand_summary_row_top {
+#ofocdgkraf .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2624,11 +2711,11 @@ Figure&nbsp;4
   border-bottom-color: #D3D3D3;
 }
 
-#aziapgpbzx .gt_striped {
+#ofocdgkraf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#aziapgpbzx .gt_table_body {
+#ofocdgkraf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2637,7 +2724,7 @@ Figure&nbsp;4
   border-bottom-color: #D3D3D3;
 }
 
-#aziapgpbzx .gt_footnotes {
+#ofocdgkraf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2651,7 +2738,7 @@ Figure&nbsp;4
   border-right-color: #D3D3D3;
 }
 
-#aziapgpbzx .gt_footnote {
+#ofocdgkraf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2660,7 +2747,7 @@ Figure&nbsp;4
   padding-right: 5px;
 }
 
-#aziapgpbzx .gt_sourcenotes {
+#ofocdgkraf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2674,7 +2761,7 @@ Figure&nbsp;4
   border-right-color: #D3D3D3;
 }
 
-#aziapgpbzx .gt_sourcenote {
+#ofocdgkraf .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2682,63 +2769,63 @@ Figure&nbsp;4
   padding-right: 5px;
 }
 
-#aziapgpbzx .gt_left {
+#ofocdgkraf .gt_left {
   text-align: left;
 }
 
-#aziapgpbzx .gt_center {
+#ofocdgkraf .gt_center {
   text-align: center;
 }
 
-#aziapgpbzx .gt_right {
+#ofocdgkraf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#aziapgpbzx .gt_font_normal {
+#ofocdgkraf .gt_font_normal {
   font-weight: normal;
 }
 
-#aziapgpbzx .gt_font_bold {
+#ofocdgkraf .gt_font_bold {
   font-weight: bold;
 }
 
-#aziapgpbzx .gt_font_italic {
+#ofocdgkraf .gt_font_italic {
   font-style: italic;
 }
 
-#aziapgpbzx .gt_super {
+#ofocdgkraf .gt_super {
   font-size: 65%;
 }
 
-#aziapgpbzx .gt_footnote_marks {
+#ofocdgkraf .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#aziapgpbzx .gt_asterisk {
+#ofocdgkraf .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#aziapgpbzx .gt_indent_1 {
+#ofocdgkraf .gt_indent_1 {
   text-indent: 5px;
 }
 
-#aziapgpbzx .gt_indent_2 {
+#ofocdgkraf .gt_indent_2 {
   text-indent: 10px;
 }
 
-#aziapgpbzx .gt_indent_3 {
+#ofocdgkraf .gt_indent_3 {
   text-indent: 15px;
 }
 
-#aziapgpbzx .gt_indent_4 {
+#ofocdgkraf .gt_indent_4 {
   text-indent: 20px;
 }
 
-#aziapgpbzx .gt_indent_5 {
+#ofocdgkraf .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2757,102 +2844,81 @@ Figure&nbsp;4
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_left" headers="label">q1</td>
-<td class="gt_row gt_center" headers="stat_0"><br>
-</td>
+<td class="gt_row gt_center" headers="stat_0">4 (3, 5)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;1</td>
-<td class="gt_row gt_center" headers="stat_0">4 (4.0%)</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;2</td>
-<td class="gt_row gt_center" headers="stat_0">19 (19%)</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;3</td>
-<td class="gt_row gt_center" headers="stat_0">22 (22%)</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;4</td>
-<td class="gt_row gt_center" headers="stat_0">24 (24%)</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;5</td>
-<td class="gt_row gt_center" headers="stat_0">18 (18%)</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;6</td>
-<td class="gt_row gt_center" headers="stat_0">12 (12%)</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;7</td>
-<td class="gt_row gt_center" headers="stat_0">1 (1.0%)</td>
-</tr>
-<tr class="odd">
 <td class="gt_row gt_left" headers="label">q2</td>
 <td class="gt_row gt_center" headers="stat_0"><br>
 </td>
 </tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;2</td>
+<td class="gt_row gt_center" headers="stat_0">1 (1.0%)</td>
+</tr>
 <tr class="even">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;3</td>
-<td class="gt_row gt_center" headers="stat_0">5 (5.0%)</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;4</td>
-<td class="gt_row gt_center" headers="stat_0">6 (6.0%)</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;5</td>
-<td class="gt_row gt_center" headers="stat_0">20 (20%)</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;6</td>
-<td class="gt_row gt_center" headers="stat_0">31 (31%)</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;7</td>
-<td class="gt_row gt_center" headers="stat_0">25 (25%)</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;8</td>
-<td class="gt_row gt_center" headers="stat_0">11 (11%)</td>
-</tr>
-<tr class="even">
-<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;9</td>
 <td class="gt_row gt_center" headers="stat_0">2 (2.0%)</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;4</td>
+<td class="gt_row gt_center" headers="stat_0">7 (7.0%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;5</td>
+<td class="gt_row gt_center" headers="stat_0">21 (21%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;6</td>
+<td class="gt_row gt_center" headers="stat_0">23 (23%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;7</td>
+<td class="gt_row gt_center" headers="stat_0">33 (33%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;8</td>
+<td class="gt_row gt_center" headers="stat_0">10 (10%)</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;9</td>
+<td class="gt_row gt_center" headers="stat_0">1 (1.0%)</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;10</td>
+<td class="gt_row gt_center" headers="stat_0">2 (2.0%)</td>
+</tr>
+<tr class="even">
 <td class="gt_row gt_left" headers="label">q3</td>
 <td class="gt_row gt_center" headers="stat_0"><br>
 </td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;5</td>
-<td class="gt_row gt_center" headers="stat_0">6 (6.0%)</td>
+<td class="gt_row gt_center" headers="stat_0">3 (3.0%)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;6</td>
-<td class="gt_row gt_center" headers="stat_0">7 (7.0%)</td>
+<td class="gt_row gt_center" headers="stat_0">9 (9.0%)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;7</td>
-<td class="gt_row gt_center" headers="stat_0">21 (21%)</td>
-</tr>
-<tr class="odd">
-<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;8</td>
-<td class="gt_row gt_center" headers="stat_0">34 (34%)</td>
+<td class="gt_row gt_center" headers="stat_0">25 (25%)</td>
 </tr>
 <tr class="even">
-<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;9</td>
-<td class="gt_row gt_center" headers="stat_0">22 (22%)</td>
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;8</td>
+<td class="gt_row gt_center" headers="stat_0">27 (27%)</td>
 </tr>
 <tr class="odd">
+<td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;9</td>
+<td class="gt_row gt_center" headers="stat_0">27 (27%)</td>
+</tr>
+<tr class="even">
 <td class="gt_row gt_left" headers="label">&nbsp;&nbsp;&nbsp;&nbsp;10</td>
-<td class="gt_row gt_center" headers="stat_0">10 (10%)</td>
+<td class="gt_row gt_center" headers="stat_0">9 (9.0%)</td>
 </tr>
 </tbody><tfoot class="gt_footnotes">
-<tr class="even">
-<td colspan="2" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> n (%)</td>
+<tr class="odd">
+<td colspan="2" class="gt_footnote"><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;"><sup>1</sup></span> Median (IQR); n (%)</td>
 </tr>
 </tfoot>
 
@@ -2862,19 +2928,255 @@ Figure&nbsp;4
 </div>
 </div>
 </div><div class="column" style="width:50%;">
+<div class="cell" data-tbl-caption="Tabulation of `q1` v `q2`">
+<div class="cell-output-display">
+<table class="caption-top">
+<caption>Tabulation of <code>q1</code> v <code>q2</code></caption>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">2</th>
+<th style="text-align: right;">3</th>
+<th style="text-align: right;">4</th>
+<th style="text-align: right;">5</th>
+<th style="text-align: right;">6</th>
+<th style="text-align: right;">7</th>
+<th style="text-align: right;">8</th>
+<th style="text-align: right;">9</th>
+<th style="text-align: right;">10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <div class="cell">
 <div class="cell-output-display">
-<div>
-<figure>
-<p><img data-src="index_files/figure-revealjs/fabricatr-correlated-discrete-heatmap-1.png" width="960"></p>
-</figure>
-</div>
+<table class="caption-top">
+<caption>Tabulation of <code>q2</code> v <code>q3</code></caption>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: right;">5</th>
+<th style="text-align: right;">6</th>
+<th style="text-align: right;">7</th>
+<th style="text-align: right;">8</th>
+<th style="text-align: right;">9</th>
+<th style="text-align: right;">10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td>3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">4</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td>6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td>8</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td>9</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 </div>
 <aside class="notes">
-<p><a href="https://www.r-project.org/" target="_blank">R</a> code can be embeded and executed to produce tables and figures.</p>
+<p>We can summarise the data, again using the excellent <a href="https://www.danieldsjoberg.com/gtsummary/" target="_blank"><code>gtsummary</code></a> package and if we tabulate <code>q1</code> and <code>q2</code> we can see the positive correlation as higher counts of <code>q1</code> correspond to higher counts of <code>q2</code>.</p>
+<p>For <code>q2</code> and <code>q3</code> we can see that the negative correlation we specified is borne out in the simulated data with high values of <code>q2</code> (the rows) corresponding to lower values of <code>q3</code> the columns.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -2887,29 +3189,135 @@ Figure&nbsp;4
           display:block!important;
       }</style></aside>
 </section>
-<section id="intra-class-correlation-icc" class="slide level2">
-<h2>Intra Class Correlation (ICC)</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-<ul>
-<li>Nested study design (e.g.&nbsp;schools, counties)</li>
-</ul>
-</div><div class="column" style="width:50%;">
-
+<section id="correlated-discrete-variables---summary-1" class="slide level2 scrollable">
+<h2>Correlated Discrete Variables - Summary</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure>
+<p><img data-src="index_files/figure-revealjs/fabricatr-correlated-discrete-heatmap-1.png" width="960"></p>
+</figure>
 </div>
-</div>
-</section>
-<section id="intra-class-correlation-icc---summary" class="slide level2">
-<h2>Intra Class Correlation (ICC) - Summary</h2>
-<div class="columns">
-<div class="column" style="width:50%;">
-
-</div><div class="column" style="width:50%;">
-
 </div>
 </div>
 <aside class="notes">
-<p><a href="https://www.r-project.org/" target="_blank">R</a> code can be embeded and executed to produce tables and figures.</p>
+<p>…and as with the continuous variables we can calculate the correlation coefficients and plot them as a heatmap. The values aren’t exactly what we specified because of random sampling but the pattern is there.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="intra-class-correlation-icc" class="slide level2 scrollable">
+<h2>Intra Class Correlation (ICC)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>schools_data <span class="ot">&lt;-</span> fabricatr<span class="sc">::</span><span class="fu">fabricate</span>(</span>
+<span id="cb7-2"><a></a>  <span class="at">primary_schools =</span> fabricatr<span class="sc">::</span><span class="fu">add_level</span>(<span class="at">N =</span> <span class="dv">20</span>,</span>
+<span id="cb7-3"><a></a>                      <span class="at">ps_quality =</span> <span class="fu">runif</span>(N, <span class="dv">1</span>, <span class="dv">10</span>)),</span>
+<span id="cb7-4"><a></a>  <span class="at">secondary_schools =</span> fabricatr<span class="sc">::</span><span class="fu">add_level</span>(<span class="at">N =</span> <span class="dv">15</span>,</span>
+<span id="cb7-5"><a></a>                        <span class="at">ss_quality =</span> <span class="fu">runif</span>(N, <span class="dv">1</span>, <span class="dv">10</span>),</span>
+<span id="cb7-6"><a></a>                        <span class="at">nest =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb7-7"><a></a>  <span class="at">students =</span> fabricatr<span class="sc">::</span><span class="fu">link_levels</span>(<span class="at">N =</span> <span class="dv">1500</span>,</span>
+<span id="cb7-8"><a></a>               <span class="at">by =</span> fabricatr<span class="sc">::</span><span class="fu">join_using</span>(primary_schools,</span>
+<span id="cb7-9"><a></a>                       secondary_schools),</span>
+<span id="cb7-10"><a></a>               <span class="at">SAT_score =</span> <span class="dv">800</span> <span class="sc">+</span> <span class="dv">13</span> <span class="sc">*</span> ps_quality <span class="sc">+</span> <span class="dv">26</span> <span class="sc">*</span> ss_quality <span class="sc">+</span></span>
+<span id="cb7-11"><a></a>                           <span class="fu">rnorm</span>(N, <span class="dv">0</span>, <span class="dv">50</span>)</span>
+<span id="cb7-12"><a></a>             )</span>
+<span id="cb7-13"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<aside class="notes">
+<ul>
+<li>Nested study design (e.g.&nbsp;schools, counties)</li>
+<li>Lifted straight from <a href="https://declaredesign.org/r/fabricatr/articles/cross_classified.html#specifying-a-merge-function-for-cross-classified-data-" target="_blank">documentation</a></li>
+<li>Students (<code>n 1500</code>) at primary (<code>ps_quality; n = 20</code>) and secondary (<code>ss_quality; n = 15</code>) school.</li>
+<li><code>SAT_score</code> is baseline (<code>800</code>) plus an additive effect for <code>ps_quality</code> and <code>ss_quality</code> and an additional random factor.</li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="intra-class-correlation-icc---summary" class="slide level2">
+<h2>Intra Class Correlation (ICC) - Summary</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a><span class="fu">lm</span>(SAT_score <span class="sc">~</span> ps_quality <span class="sc">+</span> ss_quality, <span class="at">data =</span> schools_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = SAT_score ~ ps_quality + ss_quality, data = schools_data)
+
+Coefficients:
+(Intercept)   ps_quality   ss_quality  
+     800.03        12.89        25.82  </code></pre>
+</div>
+</div>
+<aside class="notes">
+<p>If we then run a simple linear regression to predict the <code>SAT_score</code> from the quality of the <code>primary</code> and <code>secondary</code> school we see that intercept is indeed <code>800</code> and the coefficients for the effect of primary school is <code>13</code> and secondary <code>26</code> as was specified.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="intra-class-correlation-icc-1" class="slide level2 scrollable">
+<h2>Intra Class Correlation (ICC)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>schools_data <span class="ot">&lt;-</span> fabricatr<span class="sc">::</span><span class="fu">fabricate</span>(</span>
+<span id="cb10-2"><a></a>  <span class="at">primary_schools =</span> fabricatr<span class="sc">::</span><span class="fu">add_level</span>(<span class="at">N =</span> <span class="dv">20</span>,</span>
+<span id="cb10-3"><a></a>                      <span class="at">ps_quality =</span> <span class="fu">runif</span>(N, <span class="dv">1</span>, <span class="dv">10</span>)),</span>
+<span id="cb10-4"><a></a>  <span class="at">secondary_schools =</span> fabricatr<span class="sc">::</span><span class="fu">add_level</span>(<span class="at">N =</span> <span class="dv">15</span>,</span>
+<span id="cb10-5"><a></a>                        <span class="at">ss_quality =</span> <span class="fu">runif</span>(N, <span class="dv">1</span>, <span class="dv">10</span>),</span>
+<span id="cb10-6"><a></a>                        <span class="at">nest =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb10-7"><a></a>  <span class="at">students =</span> fabricatr<span class="sc">::</span><span class="fu">link_levels</span>(<span class="at">N =</span> <span class="dv">1500</span>,</span>
+<span id="cb10-8"><a></a>               <span class="at">by =</span> fabricatr<span class="sc">::</span><span class="fu">join_using</span>(primary_schools,</span>
+<span id="cb10-9"><a></a>                               secondary_schools,</span>
+<span id="cb10-10"><a></a>                               <span class="at">rho =</span> <span class="fl">0.5</span>),</span>
+<span id="cb10-11"><a></a>               <span class="at">SAT_score =</span> <span class="dv">800</span> <span class="sc">+</span> <span class="dv">13</span> <span class="sc">*</span> ps_quality <span class="sc">+</span> <span class="dv">26</span> <span class="sc">*</span> ss_quality <span class="sc">+</span></span>
+<span id="cb10-12"><a></a>                           <span class="fu">rnorm</span>(N, <span class="dv">0</span>, <span class="dv">50</span>)</span>
+<span id="cb10-13"><a></a>             )</span>
+<span id="cb10-14"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<aside class="notes">
+<p>We can introduce correlation between the quality of the primary and secondary school by specifying a value for <code>rho</code> (the spearkman rank correlation) in the <code>join_using()</code> call.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="time-series" class="slide level2">
+<h2>Time Series</h2>
+<ul>
+<li><a href="https://declaredesign.org/r/fabricatr/articles/time_series.html" target="_blank">Time series data with fabricatr</a></li>
+<li>Can use the <a href="https://pkg.robjhyndman.com/forecast/" target="_blank"><code>forecast</code></a> package to generate ARIMA data.</li>
+</ul>
+<aside class="notes">
+<p>Time series data can also be simulated, but I’ve not had time to prepare an example of this so I refer you to the authors article. Because you can use any other data creation package with <code>fabricatr</code> it is possible to leverage the <a href="https://pkg.robjhyndman.com/forecast/" target="_blank"><code>forecast</code></a> package to generate Auto-Regressive Integrated Moving Average data.</p>
 <style type="text/css">
         span.MJX_Assistive_MathML {
           position:absolute!important;
@@ -2926,14 +3334,29 @@ Figure&nbsp;4
 <h2>Summary</h2>
 <ul>
 <li><a href="https://declaredesign.org/r/fabricatr/" target="_blank">fabricatr</a> powerful but <em>easy</em> to use.</li>
-<li>Simulate data and setup analytical workflow.</li>
+<li>Simulate data and setup analytical workflow (tables/graphs/models).</li>
 <li>Not useful for <em>cleaning/tidying</em> real data (~80% of work!).</li>
 <li>Need good database schema/data dictionary</li>
+</ul>
+</section>
+<section id="links" class="slide level2">
+<h2>Links</h2>
+<ul>
+<li><a href="https://declaredesign.org/r/fabricatr/" target="_blank">fabricatr</a>
+<ul>
+<li><a href="https://declaredesign.org/r/fabricatr/articles/getting_started.html" target="_blank">Getting started with fabricatr</a></li>
+<li><a href="https://declaredesign.org/r/fabricatr/articles/building_importing.html" target="_blank">Building and Importing Data</a></li>
+<li><a href="https://declaredesign.org/r/fabricatr/articles/common_social.html" target="_blank">Common Social Science variables</a></li>
+<li><a href="https://declaredesign.org/r/fabricatr/articles/cross_classified.html" target="_blank">Panel and Cross-classified data</a></li>
+<li><a href="https://declaredesign.org/r/fabricatr/articles/time_series.html" target="_blank">Time series data with fabricatr</a></li>
+<li><a href="https://declaredesign.org/r/fabricatr/articles/time_series.html" target="_blank">Time series data with fabricatr</a></li>
+</ul></li>
+<li><a href="https://www.danieldsjoberg.com/gtsummary/" target="_blank">gtsummary</a></li>
 </ul>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
-<p><strong>Slides</strong> : <a href="https://ns-rse.github.io/sheffieldr-fabricatr-20240621" target="_blank"><strong>ns-rse.github.io/sheffieldr-fabricatr-20240621</strong></a></p>
+<p><a href="https://apod.nasa.gov/apod/ap240618.html" target="_blank"><strong>Background</strong> Gigantic Jet Lightning NASA Astronomy Picture of the Day 2024-06-18</a></p>
 </div>
 </div>
 <div class="reveal-header">
@@ -3127,6 +3550,9 @@ Figure&nbsp;4
         // devices. It is advisable to set this to a lower number than
         // viewDistance in order to save resources.
         mobileViewDistance: 2,
+
+       // Parallax background image
+       parallaxBackgroundImage: 'https://apod.nasa.gov/apod/image/2406/GiganticJets_Xuanhua_2048.jpg', // e.g. "'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg'"
 
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
